@@ -6,19 +6,20 @@ using System.Threading.Tasks;
 
 namespace VendingHouse
 {
-    internal class Buttle : Drink
+    internal class Bottle : Drink
     {
         protected Product product;
-        public Buttle(string name, int amount, int minAmount, Supplier supplier, double price) :
+        
+        public Bottle(string name, int amount, int minAmount, Supplier supplier, double price) :
             base(name, amount, minAmount, supplier, price)
         {
         }
-        public Buttle(Product product) : base(product)
+        public Bottle(Product product) : base(product)
         {
         }
         public override string GetProduct()
         {
-            return "";
+            return $"I'm a {Name} bottle ";
         }
     }
 }

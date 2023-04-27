@@ -20,7 +20,7 @@ namespace VendingHouse
 
         public override string GetProduct()
         {
-            return "";
+            return $"I'm a {Name} can ";
         }
     }
 }

@@ -18,12 +18,11 @@ namespace VendingHouse
         //mediator
 
 
-        public Product(string name, int amount, int minAmount, Supplier supplier, double price)
+        public Product(string name, int amount, int minAmount, double price)
         {
             this.Name = name;
             this.Amount = amount;
             this.MinAmount = minAmount;
-            this.Supplier = supplier;
             this.Price = price;
         }
 

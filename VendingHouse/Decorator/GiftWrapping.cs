@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace VendingHouse.Decorator
 {
-    internal class Bag : Product
+    internal class GiftWrapping : Product
     {
-        public Bag(Product product) : base(product)
+        public GiftWrapping(Product product) : base(product)
         {
         }
         public override string GetProduct()
         {
-            return $"{this._Product.GetProduct()} with bag";  
+            return $"{this._Product.GetProduct()} + gift wrapping";
         }
     }
 }
