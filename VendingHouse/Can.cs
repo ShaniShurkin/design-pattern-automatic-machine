@@ -14,6 +14,10 @@ namespace VendingHouse
         {
         }
 
+        public Can(Product product) : base(product)
+        {
+        }
+
         public override string GetProduct()
         {
             return "";

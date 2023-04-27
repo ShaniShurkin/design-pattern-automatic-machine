@@ -13,5 +13,8 @@ namespace VendingHouse
             base(name, amount, minAmount, supplier, price)
         {
         }
+        public Drink(Product product) : base(product)
+        {
+        }
     }
 }

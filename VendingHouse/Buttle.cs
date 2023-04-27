@@ -13,6 +13,9 @@ namespace VendingHouse
             base(name, amount, minAmount, supplier, price)
         {
         }
+        public Buttle(Product product) : base(product)
+        {
+        }
         public override string GetProduct()
         {
             return "";

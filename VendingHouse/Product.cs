@@ -13,6 +13,7 @@ namespace VendingHouse
         public int MinAmount { get; set; }
         public Supplier Supplier { get; set; }
         public double Price { get; set; }
+        protected Product _Product { get; set; }
 
         //mediator
 
@@ -24,6 +25,11 @@ namespace VendingHouse
             this.MinAmount = minAmount;
             this.Supplier = supplier;
             this.Price = price;
+        }
+
+        public Product(Product product)
+        {
+            this._Product = product;
         }
         public abstract string GetProduct();
         
