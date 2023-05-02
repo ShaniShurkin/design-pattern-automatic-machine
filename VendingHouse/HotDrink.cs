@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace VendingHouse
 {
-    internal class HotDrink : HotColdDrink, IDrinkMaker
+    internal class HotDrink : HotColdDrink
     {
         IDrinkMaker DrinkMaker;
         public HotDrink(string name, double basicPrice) : 

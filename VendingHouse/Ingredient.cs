@@ -21,5 +21,10 @@ namespace VendingHouse
             this.MinAmount = minAmount;
             this.Supplier = supplier;
         }
+
+        public string GetProduct()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

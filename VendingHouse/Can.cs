@@ -10,7 +10,7 @@ namespace VendingHouse
     {
         protected Product product;
         public Can(string name, int amount, int minAmount, Supplier supplier, double price) : 
-            base(name, amount, minAmount, supplier, price)
+            base(name, amount, minAmount, price)
         {
         }
 

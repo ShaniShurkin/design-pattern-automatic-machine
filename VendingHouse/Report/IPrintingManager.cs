@@ -10,7 +10,7 @@ namespace VendingHouse.Report
     {
         //maybe boolean
         void Print(List<Report> reports);
-            
+
             
     }
 }

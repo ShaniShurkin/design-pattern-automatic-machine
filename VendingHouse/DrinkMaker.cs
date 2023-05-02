@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace VendingHouse
 {
-    internal class DrinkMaker
+    internal class DrinkMaker:IDrinkMaker
     {
+        Machine machine;
+        
         public string Reset()
         {
             return "";

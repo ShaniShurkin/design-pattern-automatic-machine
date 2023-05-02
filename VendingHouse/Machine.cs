@@ -9,7 +9,7 @@ namespace VendingHouse
     internal class Machine
     {
         List<List<Product>> products;
-        List<Ingredients> ingredients;
+        List<Ingredient> ingredients;
 
         /// <summary>
         /// Adds new product 

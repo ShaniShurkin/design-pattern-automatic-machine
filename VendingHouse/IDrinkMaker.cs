@@ -8,5 +8,6 @@ namespace VendingHouse
 {
     internal interface IDrinkMaker
     {
+
     }
 }
