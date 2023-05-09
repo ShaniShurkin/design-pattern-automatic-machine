@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace VendingHouse
 {
-    internal class DrinkMaker : IDrinkMaker
+    internal abstract class DrinkMaker : IDrinkMaker
     {
         Machine machine;
         

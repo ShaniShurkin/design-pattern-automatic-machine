@@ -6,12 +6,18 @@ using System.Threading.Tasks;
 
 namespace VendingHouse.Report
 {
-    internal class DailyReport
+    internal class DailyReport:IMediator
     {
-        public List<Report> Reports/*to change*/ { get; set; }
+        protected IMediator Mediator { get; set; }
+        public List<Report> Reports { get; set; }
         public DailyReport()
         {
             Reports = new List<Report>();   
+        }
+
+        public void SetMediator(IMediator mediator)
+        {
+            this.Mediator = mediator;
         }
         //doubt...
         public void AddReport(DateTime date, string product, Action action, string details = "")
@@ -21,7 +27,9 @@ namespace VendingHouse.Report
 
         }
 
-
-
+        public void Notify(object sender)
+        {
+            Mediator.Notify(this);
+        }
     }
 }

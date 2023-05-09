@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace VendingHouse.Edible.PersonalPreparationDrink
 {
-    internal class TeaMaker
+    internal class TeaMaker:DrinkMaker
     {
         public string AddTea()
         {

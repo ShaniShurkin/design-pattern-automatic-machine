@@ -6,12 +6,15 @@ using System.Threading.Tasks;
 
 namespace VendingHouse.Report
 {
-    internal interface IPrintingManager
+    internal interface IPrintingManager:IMediator
     {
-        //IMediator Mediator;
+        IMediator Mediator { get; set; }
+        void SetMediator(IMediator mediator);
         //maybe boolean
         void Print(List<Report> reports);
+        void Notify(object sender);
 
-            
+
+
     }
 }

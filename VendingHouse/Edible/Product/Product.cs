@@ -14,7 +14,7 @@ namespace VendingHouse
         public Supplier Supplier { get; set; }
         public double Price { get; set; }
         protected Product _Product { get; set; }
-        public IMediator Mediator { get; set; }
+        protected IMediator Mediator { get; set; }
 
 
         public Product(string name, int amount, int minAmount, double price, IMediator mediator)
@@ -30,11 +30,16 @@ namespace VendingHouse
         {
             this._Product = product;
         }
+
+        public void SetMediator(IMediator mediator)
+        {
+            this.Mediator = mediator;
+        }
         public abstract string GetProduct();
 
         public void Notify(object sender)
         {
-            throw new NotImplementedException();
+            Mediator.Notify(this);
         }
     }
 }

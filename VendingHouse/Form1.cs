@@ -16,5 +16,10 @@ namespace VendingHouse
         {
             InitializeComponent();
         }
+
+        private void btnProduct_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
