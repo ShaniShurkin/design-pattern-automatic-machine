@@ -42,19 +42,19 @@ namespace VendingHouse
         public void Notify(object sender)
         {
             Type type = sender.GetType();
-            switch (type.Name)
-            {
-                case "Product":
+            //switch (type.Name)
+            //{
+            //    case "Product":
 
-                case "Bag":
+            //    case "Bag":
 
                
                     
 
-                default:
-                    this.payment.Pay(0, 0);
+            //    default:
+            //        this.payment.Pay(0, 0);
                         
-            }
+            //}
         }
     }
 }

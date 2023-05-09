@@ -9,8 +9,8 @@ namespace VendingHouse
     internal class Can : Drink
     {
         protected Product product;
-        public Can(string name, int amount, int minAmount, Supplier supplier, double price) : 
-            base(name, amount, minAmount, price)
+        public Can(string name, int amount, int minAmount, Supplier supplier, double price, IMediator mediator) :
+            base(name, amount, minAmount, price, mediator)
         {
         }
 

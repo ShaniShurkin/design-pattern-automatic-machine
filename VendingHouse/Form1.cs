@@ -17,7 +17,12 @@ namespace VendingHouse
             InitializeComponent();
         }
 
-        private void btnProduct_Click(object sender, EventArgs e)
+        private void btn_Product_CheckedChanged(object sender, EventArgs e)
+        {
+            VendingMachine.SelectedTab += 1;
+        }
+
+        private void tabPage1_Click(object sender, EventArgs e)
         {
 
         }
