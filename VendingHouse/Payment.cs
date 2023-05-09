@@ -19,6 +19,7 @@ namespace VendingHouse
         {
             mediator.Notify(this);
         }
+        
 
         public double Pay(double price, double amountReceived)
         {

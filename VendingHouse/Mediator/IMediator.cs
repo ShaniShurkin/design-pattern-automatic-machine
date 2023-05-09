@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace VendingHouse
 {
-    internal interface IMediator
+    public interface IMediator
     {
         void Notify(object sender);
     }
