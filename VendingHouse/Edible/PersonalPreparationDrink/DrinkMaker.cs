@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace VendingHouse
 {
-    internal class DrinkMaker:IDrinkMaker
+    internal class DrinkMaker : IDrinkMaker
     {
         Machine machine;
         
@@ -26,24 +26,6 @@ namespace VendingHouse
         {
             return "";
         }
-        public string AddChocolate()
-        {
-            return "";
-        }
-        public string AddCoffee()
-        {
-            return "";
-        }
-
-        public string AddTea()
-        {
-            return "";
-        }
-        public string AddWhippedCream()
-        {
-            return "";
-        }
         
-
     }
 }

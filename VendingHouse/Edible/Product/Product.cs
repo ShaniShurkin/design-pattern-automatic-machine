@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace VendingHouse
 {
-    internal abstract class Product : Iedible
+    internal abstract class Product :IMediator, Iedible
     {
         public string Name { get; set; }
         public int Amount { get; set; }
@@ -14,16 +14,16 @@ namespace VendingHouse
         public Supplier Supplier { get; set; }
         public double Price { get; set; }
         protected Product _Product { get; set; }
+        public IMediator Mediator { get; set; }
 
-        //mediator
 
-
-        public Product(string name, int amount, int minAmount, double price)
+        public Product(string name, int amount, int minAmount, double price, IMediator mediator)
         {
             this.Name = name;
             this.Amount = amount;
             this.MinAmount = minAmount;
             this.Price = price;
+            this.Mediator = mediator;
         }
 
         public Product(Product product)
@@ -31,6 +31,10 @@ namespace VendingHouse
             this._Product = product;
         }
         public abstract string GetProduct();
-        
+
+        public void Notify(object sender)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

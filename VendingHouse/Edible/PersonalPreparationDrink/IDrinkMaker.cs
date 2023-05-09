@@ -8,6 +8,14 @@ namespace VendingHouse
 {
     internal interface IDrinkMaker
     {
+        string Reset();
+
+        string AddHotWater();
+
+        string AddSugar();
+        
+        string AddMilk();
+
 
     }
 }

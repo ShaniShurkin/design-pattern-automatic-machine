@@ -46,37 +46,40 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Bottle.cs" />
-    <Compile Include="Can.cs" />
-    <Compile Include="ColdDrink.cs" />
-    <Compile Include="Decorator\Bag.cs" />
-    <Compile Include="Decorator\GiftWrapping.cs" />
-    <Compile Include="Drink.cs" />
-    <Compile Include="DrinkMaker.cs" />
+    <Compile Include="Edible\PersonalPreparationDrink\ChcolateMilkMaker.cs" />
+    <Compile Include="Edible\PersonalPreparationDrink\CoffeeMaker.cs" />
+    <Compile Include="Edible\PersonalPreparationDrink\TeaMaker.cs" />
+    <Compile Include="Edible\Product\Bottle.cs" />
+    <Compile Include="Edible\Product\Can.cs" />
+    <Compile Include="Edible\PersonalPreparationDrink\ColdDrink.cs" />
+    <Compile Include="Edible\Product\Decorator\Bag.cs" />
+    <Compile Include="Edible\Product\Decorator\GiftWrapping.cs" />
+    <Compile Include="Edible\Product\Drink.cs" />
+    <Compile Include="Edible\PersonalPreparationDrink\DrinkMaker.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="HotColdDrink.cs" />
-    <Compile Include="HotDrink.cs" />
-    <Compile Include="IDrinkMaker.cs" />
-    <Compile Include="Iedible.cs" />
-    <Compile Include="IMediator.cs" />
-    <Compile Include="Ingredient.cs" />
+    <Compile Include="Edible\PersonalPreparationDrink\HotColdDrink.cs" />
+    <Compile Include="Edible\PersonalPreparationDrink\HotDrink.cs" />
+    <Compile Include="Edible\PersonalPreparationDrink\IDrinkMaker.cs" />
+    <Compile Include="Edible\Iedible.cs" />
+    <Compile Include="Mediator\IMediator.cs" />
+    <Compile Include="Edible\PersonalPreparationDrink\Ingredient.cs" />
     <Compile Include="Machine.cs" />
     <Compile Include="Payment.cs" />
-    <Compile Include="Product.cs" />
+    <Compile Include="Edible\Product\Product.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="PurchaseMediator.cs" />
+    <Compile Include="Mediator\PurchaseMediator.cs" />
     <Compile Include="Report\Action.cs" />
     <Compile Include="Report\DailyReport.cs" />
     <Compile Include="Report\IPrintingManager.cs" />
     <Compile Include="Report\Report.cs" />
     <Compile Include="Report\TxtPrintingManager.cs" />
-    <Compile Include="Snack.cs" />
+    <Compile Include="Edible\Product\Snack.cs" />
     <Compile Include="Supplier.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

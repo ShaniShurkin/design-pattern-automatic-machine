@@ -8,6 +8,7 @@ namespace VendingHouse.Report
 {
     internal interface IPrintingManager
     {
+        //IMediator Mediator;
         //maybe boolean
         void Print(List<Report> reports);
 
