@@ -12,7 +12,7 @@ namespace VendingHouse
 
         string AddHotWater();
 
-        string AddSugar();
+        string AddSugar(int num);
         
         string AddMilk();
 

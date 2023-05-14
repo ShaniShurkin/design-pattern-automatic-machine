@@ -11,20 +11,19 @@ namespace VendingHouse
         public string Name { get; set; }
         public int Amount { get; set; }
         public int MinAmount { get; set; }
-        public Supplier Supplier { get; set; }
+        public int UnitQuantity { get; set; }
+        public string UnitOfMeasure { get; set; }
+        public static Supplier Supplier { get; set; }
 
-        //mediator
-        public Ingredient(string name, int amount, int minAmount, Supplier supplier)
+        public Ingredient(string name, int amount, int minAmount, int unitQuantity, string unitOfMeasure)
         {
             this.Name = name;
             this.Amount = amount;
             this.MinAmount = minAmount;
-            this.Supplier = supplier;
+            Supplier = new Supplier("Ingredient supplier", "0502125632");
+            this.UnitQuantity = unitQuantity;
+            this.UnitOfMeasure = unitOfMeasure;
         }
 
-        public string GetProduct()
-        {
-            throw new NotImplementedException();
-        }
     }
 }

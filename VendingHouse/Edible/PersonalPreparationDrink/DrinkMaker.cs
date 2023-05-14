@@ -3,28 +3,43 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VendingHouse.Edible.PersonalPreparationDrink;
 
 namespace VendingHouse
 {
     internal abstract class DrinkMaker : IDrinkMaker
     {
-        Machine machine;
-        
+        protected Machine machine;
+        public DrinkMaker(Machine machine)
+        {
+            this.machine = machine;
+        }
+
         public string Reset()
         {
-            return "";
+
+            return "Bringing a cardboard cup...";
         }
         public string AddHotWater()
         {
-            return "";
+
+            return "Adding hot water...";
         }
-        public string AddSugar()
+
+
+        [Optional]
+        public string AddSugar(int num)
         {
-            return "";
+
+            return $"Adding {num} teaspoons of sugar..."; ;
         }
+
+
+        [Optional]
         public string AddMilk()
         {
-            return "";
+
+            return "Pouring milk...";
         }
         
     }

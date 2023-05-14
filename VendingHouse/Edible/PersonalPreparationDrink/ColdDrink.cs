@@ -13,11 +13,13 @@ namespace VendingHouse
         public ColdDrink(string name, double basicPrice, bool hasIce = true) :
             base(name, basicPrice)
         {
-            HasIce=hasIce;
+            this.HasIce=hasIce;
         }
-        public override string Make()
+
+        public override string Make(List<string> list)
         {
-            string result =  $"pouring {Name} ";
+            string result = $"Pouring {list[0]} ";
+            this.HasIce = bool.Parse(list[1]);
             return HasIce ? $"{result} with ice cubes..." : $"{result}...";
         }
     }

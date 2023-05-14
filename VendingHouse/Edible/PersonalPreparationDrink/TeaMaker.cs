@@ -1,20 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace VendingHouse.Edible.PersonalPreparationDrink
+﻿namespace VendingHouse.Edible.PersonalPreparationDrink
 {
-    internal class TeaMaker:DrinkMaker
+    internal class TeaMaker : DrinkMaker
     {
+
+        public TeaMaker(Machine machine) : base(machine)
+        {
+        }
+
         public string AddTea()
         {
-            return "";
+
+            return "Adding tea...";
         }
+
+        [Optional]
         public string AddTeaLeaves()
         {
-            return "";
+
+            return "Adding tea leaves....";
         }
     }
 }

@@ -34,10 +34,10 @@ namespace VendingHouse
             this.radioHotDrink = new System.Windows.Forms.RadioButton();
             this.VendingMachine = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.radioColdDrink = new System.Windows.Forms.RadioButton();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.radioColdDrink = new System.Windows.Forms.RadioButton();
             this.backBtn = new System.Windows.Forms.Button();
             this.VendingMachine.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -47,10 +47,10 @@ namespace VendingHouse
             // 
             this.radioProduct.Appearance = System.Windows.Forms.Appearance.Button;
             this.radioProduct.AutoSize = true;
-            this.radioProduct.Location = new System.Drawing.Point(155, 126);
+            this.radioProduct.Location = new System.Drawing.Point(580, 155);
             this.radioProduct.Name = "radioProduct";
-            this.radioProduct.Padding = new System.Windows.Forms.Padding(4);
-            this.radioProduct.Size = new System.Drawing.Size(71, 34);
+            this.radioProduct.Padding = new System.Windows.Forms.Padding(6);
+            this.radioProduct.Size = new System.Drawing.Size(75, 38);
             this.radioProduct.TabIndex = 5;
             this.radioProduct.Text = "Product";
             this.radioProduct.UseVisualStyleBackColor = true;
@@ -60,7 +60,7 @@ namespace VendingHouse
             // 
             this.radioHotDrink.Appearance = System.Windows.Forms.Appearance.Button;
             this.radioHotDrink.AutoSize = true;
-            this.radioHotDrink.Location = new System.Drawing.Point(155, 183);
+            this.radioHotDrink.Location = new System.Drawing.Point(575, 213);
             this.radioHotDrink.Name = "radioHotDrink";
             this.radioHotDrink.Padding = new System.Windows.Forms.Padding(4);
             this.radioHotDrink.Size = new System.Drawing.Size(80, 34);
@@ -93,12 +93,25 @@ namespace VendingHouse
             this.tabPage1.TabIndex = 0;
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // radioColdDrink
+            // 
+            this.radioColdDrink.Appearance = System.Windows.Forms.Appearance.Button;
+            this.radioColdDrink.AutoSize = true;
+            this.radioColdDrink.Location = new System.Drawing.Point(575, 276);
+            this.radioColdDrink.Name = "radioColdDrink";
+            this.radioColdDrink.Padding = new System.Windows.Forms.Padding(4);
+            this.radioColdDrink.Size = new System.Drawing.Size(87, 34);
+            this.radioColdDrink.TabIndex = 7;
+            this.radioColdDrink.Text = "Cold Drink";
+            this.radioColdDrink.UseVisualStyleBackColor = true;
+            this.radioColdDrink.CheckedChanged += new System.EventHandler(this.radioColdDrink_CheckedChanged);
+            // 
             // tabPage2
             // 
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1354, 679);
+            this.tabPage2.Size = new System.Drawing.Size(1363, 577);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
@@ -107,7 +120,7 @@ namespace VendingHouse
             this.tabPage3.Location = new System.Drawing.Point(4, 25);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(1354, 679);
+            this.tabPage3.Size = new System.Drawing.Size(1363, 577);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
@@ -116,22 +129,9 @@ namespace VendingHouse
             this.tabPage4.Location = new System.Drawing.Point(4, 25);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(1354, 679);
+            this.tabPage4.Size = new System.Drawing.Size(1363, 577);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.UseVisualStyleBackColor = true;
-            // 
-            // radioColdDrink
-            // 
-            this.radioColdDrink.Appearance = System.Windows.Forms.Appearance.Button;
-            this.radioColdDrink.AutoSize = true;
-            this.radioColdDrink.Location = new System.Drawing.Point(155, 246);
-            this.radioColdDrink.Name = "radioColdDrink";
-            this.radioColdDrink.Padding = new System.Windows.Forms.Padding(4);
-            this.radioColdDrink.Size = new System.Drawing.Size(87, 34);
-            this.radioColdDrink.TabIndex = 7;
-            this.radioColdDrink.Text = "Cold Drink";
-            this.radioColdDrink.UseVisualStyleBackColor = true;
-            this.radioColdDrink.CheckedChanged += new System.EventHandler(this.radioColdDrink_CheckedChanged);
             // 
             // backBtn
             // 

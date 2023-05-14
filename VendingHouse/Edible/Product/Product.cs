@@ -17,13 +17,12 @@ namespace VendingHouse
         protected IMediator Mediator { get; set; }
 
 
-        public Product(string name, int amount, int minAmount, double price, IMediator mediator)
+        public Product(string name, int amount, int minAmount, double price)
         {
             this.Name = name;
             this.Amount = amount;
             this.MinAmount = minAmount;
             this.Price = price;
-            this.Mediator = mediator;
         }
 
         public Product(Product product)
@@ -31,10 +30,10 @@ namespace VendingHouse
             this._Product = product;
         }
 
-        public void SetMediator(IMediator mediator)
-        {
-            this.Mediator = mediator;
-        }
+        //public void SetMediator(IMediator mediator)
+        //{
+        //    this.Mediator = mediator;
+        //}
         public abstract string GetProduct();
 
         public void Notify(object sender)

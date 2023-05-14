@@ -21,7 +21,7 @@ namespace VendingHouse
         {
             this.Mediator = mediator;
         }
-        public abstract string Make();
+        public abstract string Make(List<string> list);
 
         public void Notify(object sender)
         {

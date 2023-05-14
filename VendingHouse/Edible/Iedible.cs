@@ -10,8 +10,6 @@ namespace VendingHouse
     {
         string Name { get; set; }
         int Amount { get; set; }
-        int MinAmount { get; set; }
-        Supplier Supplier { get; set; }
-        string GetProduct();
+        int MinAmount { get; set; }       
     }
 }

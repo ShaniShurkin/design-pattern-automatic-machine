@@ -1,22 +1,45 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Reflection;
 
 namespace VendingHouse
 {
     internal class HotDrink : HotColdDrink
     {
-        IDrinkMaker DrinkMaker;
-        public HotDrink(string name, double basicPrice) : 
+        public IDrinkMaker DrinkMaker { get; set; }
+        public HotDrink(string name, double basicPrice, IDrinkMaker drinkMaker) :
             base(name, basicPrice)
         {
-        }
+            this.DrinkMaker = drinkMaker;
 
-        public override string Make()
+        }
+        
+        public override string Make(List<string> list)
         {
-            return "";
+            string operations = "";
+            int countTeaSpoonsOfSugar = 0;
+
+            foreach (var operation in list)
+            {
+                MethodInfo method = DrinkMaker.GetType().GetMethod(operation);
+                if (operation == "AddSugar")
+                {
+                    countTeaSpoonsOfSugar++;
+                      
+                }
+                    
+                else if (method != null)
+                {
+                    operations+= $"{ method.Invoke(DrinkMaker, null)}\n";
+                }
+             
+            }
+            if (countTeaSpoonsOfSugar > 0)
+            {
+                operations += DrinkMaker.AddSugar(countTeaSpoonsOfSugar);
+                
+            }
+
+            return operations;
         }
     }
 }

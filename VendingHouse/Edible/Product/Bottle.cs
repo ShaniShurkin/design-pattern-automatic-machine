@@ -10,8 +10,8 @@ namespace VendingHouse
     {
         protected Product product;
 
-        public Bottle(string name, int amount, int minAmount, Supplier supplier, double price, IMediator mediator) :
-            base(name, amount, minAmount, price, mediator)
+        public Bottle(string name, int amount, int minAmount, double price) :
+            base(name, amount, minAmount, price)
         {
         }
         public Bottle(Product product) : base(product)

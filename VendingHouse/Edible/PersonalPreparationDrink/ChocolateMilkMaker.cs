@@ -1,12 +1,10 @@
 ﻿namespace VendingHouse.Edible.PersonalPreparationDrink
 {
-    internal class CoffeeMaker : DrinkMaker
+    internal class ChocolateMilkMaker : DrinkMaker
     {
-        public CoffeeMaker(Machine machine) : base(machine)
+        public ChocolateMilkMaker(Machine machine) : base(machine)
         {
-
         }
-
 
 
         [Optional]
@@ -15,19 +13,20 @@
 
             return "Melting chocolate... \n Adding chocolate...";
         }
-        public string AddCoffee()
-        {
-          
-            return "Adding coffee...";
-        }
 
+        [Optional]
+        public string AddCocoa()
+        {
+
+            return "Adding cocoa...";
+        }
 
         [Optional]
         public string AddWhippedCream()
         {
 
-
             return "Adding whipped cream...";
         }
+
     }
 }

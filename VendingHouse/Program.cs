@@ -14,9 +14,21 @@ namespace VendingHouse
         [STAThread]
         static void Main()
         {
+            Machine machine = Machine.MyMachine;
+            machine.Products["cans"].Add(new Can("Coca Cola", 30, 12, 6));
+            machine.Products["cans"].Add(new Can("Sprite", 30, 12, 6));
+            machine.Products["cans"].Add(new Can("Schweeps", 30, 12, 6));
+            machine.Products["bottles"].Add(new Can("Soda", 30, 12, 5));
+            machine.Products["bottles"].Add(new Can("Water", 30, 12, 5));
+            machine.Products["snacks"].Add(new Can("Chips", 30, 12, 4.5));
+            machine.Products["snacks"].Add(new Can("Ten Chap", 30, 12, 4.5));
+            machine.Products["snacks"].Add(new Can("Pringles", 30, 12, 8));
+            //DependencyManager.RegisterDependencies();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1(new PurchaseMediator()));
+
+            
         }
     }
 }
