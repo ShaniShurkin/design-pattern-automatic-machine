@@ -10,8 +10,8 @@ namespace VendingHouse
     {
         
         
-        public Drink(string name, int amount, int minAmount, double price) : 
-            base(name, amount, minAmount, price)
+        public Drink(string name, int amount, double price) : 
+            base(name, amount,price)
         {
             //We have to solve this problem with using injection and interface
             this.Supplier = new Supplier("Shay", "0542342322");

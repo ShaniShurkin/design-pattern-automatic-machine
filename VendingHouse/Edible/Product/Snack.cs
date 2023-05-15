@@ -8,9 +8,10 @@ namespace VendingHouse
 {
     internal class Snack : Product
     {
-        public Snack(string name, int amount, int minAmount, double price) : 
-            base(name, amount, minAmount, price)
+        public Snack(string name, int amount,double price) : 
+            base(name, amount,price)
         {
+            this.MinAmount =15; 
             this.Supplier = new Supplier("Dan", "0519993231");
         }
         //not sure yet.......

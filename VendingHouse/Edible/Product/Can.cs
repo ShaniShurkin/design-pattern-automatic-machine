@@ -9,14 +9,16 @@ namespace VendingHouse
     internal class Can : Drink
     {
         protected Product product;
-        public Can(string name, int amount, int minAmount, double price) :
-            base(name, amount, minAmount, price)
+        public Can(string name, int amount,double price) :
+            base(name, amount, price)
         {
-   
+            this.MinAmount = 20; ;
+
         }
 
         public Can(Product product) : base(product)
         {
+            this.MinAmount = 20; ;
         }
 
         public override string GetProduct()
