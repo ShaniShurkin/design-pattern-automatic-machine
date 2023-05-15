@@ -17,6 +17,7 @@ namespace VendingHouse
         }
         public Bottle(Product product) : base(product)
         {
+            this.MinAmount = 20; ;
         }
         public override string GetProduct()
         {

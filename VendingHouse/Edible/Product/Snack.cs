@@ -7,6 +7,7 @@ namespace VendingHouse
         public Snack(string name, int amount, double price) : 
             base(name, amount, price)
         {
+            this.MinAmount =15; 
             this.Supplier = new Supplier("Dan", "0519993231");
             MinAmount = 15;
         }

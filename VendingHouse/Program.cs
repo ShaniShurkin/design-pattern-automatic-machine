@@ -26,9 +26,7 @@ namespace VendingHouse
             //DependencyManager.RegisterDependencies();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1(new PurchaseMediator()));
-
-            
+            Application.Run(new Form1(new PurchaseMediator()));  
         }
     }
 }
