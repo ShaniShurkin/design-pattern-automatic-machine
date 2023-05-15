@@ -102,7 +102,7 @@ namespace VendingHouse
 
                 Product selectedProduct = Products[product.GetType().ToString().ToLower() + "s"].Find((p) => p.Name == product);
                 selectedProduct.Amount--;
-                return selectedProduct.Amount < selectedProduct.MinAmount ? true : false;
+                return selectedProduct.Amount < Product.MinAmount ? true : false;
         }
 
 

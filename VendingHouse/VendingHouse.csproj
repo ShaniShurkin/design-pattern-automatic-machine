@@ -101,7 +101,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Mediator\PurchaseMediator.cs" />
-    <Compile Include="Report\Action.cs" />
+    <Compile Include="Report\Actions.cs" />
     <Compile Include="Report\DailyReport.cs" />
     <Compile Include="Report\IPrintingManager.cs" />
     <Compile Include="Report\Report.cs" />

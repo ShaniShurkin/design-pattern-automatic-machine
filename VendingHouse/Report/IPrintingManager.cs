@@ -11,7 +11,7 @@ namespace VendingHouse.Report
         IMediator Mediator { get; set; }
         void SetMediator(IMediator mediator);
         //maybe boolean
-        void Print(List<Report> reports);
+         void Print(List<Report> reports);
         void Notify(object sender);
 
 

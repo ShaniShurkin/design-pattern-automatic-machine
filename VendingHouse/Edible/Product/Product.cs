@@ -10,24 +10,24 @@ namespace VendingHouse
     {
         public string Name { get; set; }
         public int Amount { get; set; }
-        public int MinAmount { get; set; }
+        public static int MinAmount { get; set; }
         public Supplier Supplier { get; set; }
         public double Price { get; set; }
         protected Product _Product { get; set; }
         protected IMediator Mediator { get; set; }
 
 
-        public Product(string name, int amount, int minAmount, double price)
+        public Product(string name, int amount, double price)
         {
             this.Name = name;
             this.Amount = amount;
-            this.MinAmount = minAmount;
             this.Price = price;
         }
 
-        public Product(Product product)
+        public Product(Product product):this(product.Name, product.Amount, product.Price)
         {
-            this._Product = product;
+            
+            _Product = product;
         }
 
         //public void SetMediator(IMediator mediator)

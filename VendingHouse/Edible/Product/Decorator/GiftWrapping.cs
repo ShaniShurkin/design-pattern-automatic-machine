@@ -13,7 +13,7 @@ namespace VendingHouse.Decorator
         }
         public override string GetProduct()
         {
-            return $"{this._Product.GetProduct()} + gift wrapping";
+            return $"{_Product.GetProduct()} + gift wrapping";
         }
     }
 }

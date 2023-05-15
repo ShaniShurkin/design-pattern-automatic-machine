@@ -23,8 +23,7 @@ namespace VendingHouse
 
         public double Pay(double price, double amountReceived)
         {
-            /////
-            return price * amountReceived;
+            return amountReceived - price;
         }
         
     }

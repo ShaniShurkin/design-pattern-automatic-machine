@@ -9,7 +9,6 @@ namespace VendingHouse
     internal interface Iedible
     {
         string Name { get; set; }
-        int Amount { get; set; }
-        int MinAmount { get; set; }       
+        int Amount { get; set; }       
     }
 }

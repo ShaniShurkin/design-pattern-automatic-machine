@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace VendingHouse.Report
 {
-    enum Action
+    enum Actions
     {
         SELLING,
         ADDING_TO_STOCK,

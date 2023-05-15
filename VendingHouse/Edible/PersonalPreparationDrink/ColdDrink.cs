@@ -10,8 +10,8 @@ namespace VendingHouse
     {
         public bool HasIce { get; set; }
         
-        public ColdDrink(string name, double basicPrice, bool hasIce = true) :
-            base(name, basicPrice)
+        public ColdDrink(string name, bool hasIce = true) :
+            base(name, 8)
         {
             this.HasIce=hasIce;
         }

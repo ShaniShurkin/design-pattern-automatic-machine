@@ -10,9 +10,9 @@ namespace VendingHouse.Report
     {
         public DateTime DateTime { get; set; }
         public string Product { get; set; }
-        public Action Action { get; set; }
+        public Actions Action { get; set; }
         public string Details { get; set; }
-        public Report(DateTime dateTime, string product, Action action, string details = "")
+        public Report(DateTime dateTime, string product, Actions action, string details = "")
         {
             DateTime=dateTime;
             Product=product;

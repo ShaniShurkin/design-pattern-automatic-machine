@@ -6,8 +6,8 @@ namespace VendingHouse
     internal class HotDrink : HotColdDrink
     {
         public IDrinkMaker DrinkMaker { get; set; }
-        public HotDrink(string name, double basicPrice, IDrinkMaker drinkMaker) :
-            base(name, basicPrice)
+        public HotDrink(string name, IDrinkMaker drinkMaker) :
+            base(name, 12)
         {
             this.DrinkMaker = drinkMaker;
 
