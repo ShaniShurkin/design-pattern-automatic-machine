@@ -16,12 +16,10 @@ namespace VendingHouse
         private Product product;
 
         private HotDrink hotDrink;
-        
+
         private ColdDrink coldDrink;
 
         private Payment payment;
-
-        private Supplier supplier;
 
         private DailyReport dailyReport;
 
@@ -39,7 +37,6 @@ namespace VendingHouse
 
         public List<string> HotDrinkMethods(string type)
         {
-            this.supplier = Ingredient.Supplier;
             List<string> list = new List<string>();
             string className = type.Replace(" ", "") + "Maker";
             Type classType = Type.GetType("VendingHouse.Edible.PersonalPreparationDrink." + className);
@@ -60,7 +57,7 @@ namespace VendingHouse
 
         }
 
-        private string HotDrinkCreator(List<string> operations)
+        private List<string> HotDrinkGetMethods(List<string> operations)
         {
             List<string> list = new List<string>() { "Reset", "AddHotWater" };
             string drinkMaker = this.hotDrink.DrinkMaker.GetType().Name;
@@ -69,11 +66,12 @@ namespace VendingHouse
             else if (drinkMaker == "TeaMaker")
                 list.Add("AddTea");
             list.AddRange(operations);
-            RemoveIngredients(list);
-            return this.hotDrink.Make(list);
+            return list;
+
         }
-        public void RemoveIngredients(List<string> operations)
+        private List<string> RemoveIngredients(List<string> operations)
         {
+            List<string> keys = new List<string>();
             foreach (string item in operations)
             {
                 string key = item.Replace("Add", "");
@@ -87,12 +85,10 @@ namespace VendingHouse
                 if (item == "Reset")
                     key = "cups";
                 bool isMissing = this.machine.RemoveIngredient(key);
-                string messageToSupplier = "";
                 if (isMissing)
-                    messageToSupplier = this.supplier.Message(key);
-
+                    keys.Add(key);
             }
-
+            return keys;
         }
         private string ColdDrinkCreator(string name, bool hasIce)
         {
@@ -140,11 +136,21 @@ namespace VendingHouse
             return this.payment.Pay(price, amount);
         }
 
-        private void CreateReport(string name,Actions action,string price)
+        private void CreateReport(string name, Actions action, string price)
         {
-            this.dailyReport.AddReport(DateTime.Now, name, action, $"price: {price}$" );
+            this.dailyReport.AddReport(DateTime.Now, name, action, $"price: {price}$");
         }
-        public void Notify(Dictionary<string, string> purchase,string operation)
+        private void MessageToSupplier(List<string> keysToMessage, Supplier supplier)
+        {
+            if (keysToMessage.Count == 0)
+                return;
+            foreach (string key in keysToMessage) {
+                //get message to some place........
+                supplier.Message(key); 
+            }
+
+        }
+        public void Notify(Dictionary<string, string> purchase, string operation)
         {
 
             switch (operation)
@@ -153,24 +159,30 @@ namespace VendingHouse
                     ProductOperation(purchase);
                     return;
                 case "hot drink":
+                    List<string> methods = this.HotDrinkGetMethods(purchase["methods"].Split(',').ToList());
+                    List<string> keysToMessage = RemoveIngredients(methods);
+                    this.MessageToSupplier(keysToMessage, Ingredient.Supplier);
+                    purchase["getProduct"] = this.hotDrink.Make(methods);
                     purchase["price"] = this.hotDrink.BasicPrice.ToString();
                     return;
                 case "cold drink":
+                    purchase["getProduct"] = this.ColdDrinkCreator(purchase["name"], bool.Parse(purchase["hasIce"]));
                     purchase["price"] = this.coldDrink.BasicPrice.ToString();
                     return;
                 case "pay":
                     this.CreateReport(purchase["name"], Actions.SELLING, purchase["price"]);
+                    purchase["excess"] = this.Pay(double.Parse(purchase["price"]), double.Parse(purchase["excess"])).ToString();
                     return;
-                case "createColdDrink":
-                    purchase["getProduct"] = this.ColdDrinkCreator(purchase["name"], bool.Parse(purchase["hasIce"]));
-                    return;
-                case "createHotDrink":
-                    purchase["getProduct"] = this.HotDrinkCreator(purchase["methods"].Split(',').ToList());
-                    return;
+                //case "createColdDrink":
+                //purchase["getProduct"] = this.ColdDrinkCreator(purchase["name"], bool.Parse(purchase["hasIce"]));
+                //return;
+                //case "createHotDrink":
+                //purchase["getProduct"] = this.HotDrinkCreator(purchase["methods"].Split(',').ToList());
+                //return;
                 case "printReport":
                     this.dailyReport.Print();
                     return;
-                
+
             }
         }
         public void Notify(object sender)

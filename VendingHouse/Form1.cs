@@ -19,13 +19,8 @@ namespace VendingHouse
             InitializeComponent();
             this.mediator = mediator;
             this.purchase = new Dictionary<string, string>();
-            this.applyBtn = new Button()
-            {
-                Text = "Apply",
-                Name = "btn" + "Apply",
-                Location = new Point(400, 400),
-                Size = new Size(120, 40),      
-            };
+            this.applyBtn = CreateButton("Apply", "applyBtn", VendingMachine.Height-50);
+           
 
             //mediator = DependencyManager.Resolve<IMediator>();
         }
@@ -33,29 +28,37 @@ namespace VendingHouse
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            int locationY = 50;
+            Button b1 = CreateButton("Product", "ProductBtn", locationY += 80);
+            b1.Click += ProductBtn_Click;
+            Button b2 = CreateButton("Hot Drink", "HotDrinkBtn", locationY += 80);
+            b1.Click += HotDrinkBtn_Click;
+            Button b3 = CreateButton("Cold Drink", "ColdDrinkBtn", locationY += 80);
+            b3.Click += ColdDrinkBtn_Click;
+            VendingMachine.TabPages[0].Controls.AddRange(new List<Button>() { b1, b2, b3 }.ToArray());
 
         }
-        private void radioProduct_CheckedChanged(object sender, EventArgs e)
+        private void ProductBtn_Click(object sender, EventArgs e)
         {
             purchase["type"] = "product";
             List<string> products = ((PurchaseMediator)mediator).GetCategoriesList("products");
             CreateBtns(products, CreateProdutList);
-
         }
 
-        private void radioHotDrink_CheckedChanged(object sender, EventArgs e)
+        private void HotDrinkBtn_Click(object sender, EventArgs e)
         {
             purchase["type"] = "hot drink";
             List<string> hotDrinks = ((PurchaseMediator)mediator).GetCategoriesList("hotDrinks");
             CreateBtns(hotDrinks, CreateHotDrinkOperationList);
         }
 
-        private void radioColdDrink_CheckedChanged(object sender, EventArgs e)
+        private void ColdDrinkBtn_Click(object sender, EventArgs e)
         {
             purchase["type"] = "cold drink";
             List<string> coldDrinks = ((PurchaseMediator)mediator).GetCategoriesList("coldDrinks");
             CreateBtns(coldDrinks, CreateColdDrinkCheckbox);
         }
+
         private void CreateBtns(List<string> names, EventHandler createList)
         {
             Button btn;
@@ -65,16 +68,11 @@ namespace VendingHouse
             int locationY = 100;
             foreach (string name in names)
             {
-                btn = new Button()
-                {
-                    Text = name,
-                    Name = "btn" + name,
-                    Location = new Point(300, locationY),
-                    Size = new Size(120, 40),
-                };
+                //check name
+                btn = CreateButton(name, "btn" + name, locationY);
                 btn.Click += createList;
                 VendingMachine.TabPages[place].Controls.Add(btn);
-                locationY += 60;
+                locationY += 80;
 
             }
         }
@@ -90,18 +88,14 @@ namespace VendingHouse
             List<Product> list = ((PurchaseMediator)mediator).ProductList(name);
             foreach (Product product in list)
             {
-                Button btn = new Button()
+                Button btn = CreateButton(product.Name, product.Name + "Btn", locationY);
+                btn.Click +=(s, e2) =>
                 {
-                    Text = product.Name,
-                    Location = new Point(300, locationY),
-                    Size = new Size(120, 40),
-                };
-                btn.Click +=(s,e2)=> {
                     purchase["name"] = product.Name;
                     GetMoreOptions();
                 };
                 VendingMachine.TabPages[place].Controls.Add(btn);
-                locationY += 60;
+                locationY += 80;
             }
 
         }
@@ -171,7 +165,7 @@ namespace VendingHouse
 
             };
             VendingMachine.TabPages[place].Controls.Add(this.applyBtn);
-            
+
         }
 
         private void CreateHotDrink()
@@ -186,20 +180,15 @@ namespace VendingHouse
                 }
             }
             purchase["methods"] = string.Join(",", methods);
-             ((PurchaseMediator)this.mediator).Notify(purchase, "createHotDrink");
+            ((PurchaseMediator)this.mediator).Notify(purchase, "createHotDrink");
         }
         private void CreateColdDrinkCheckbox(object sender, EventArgs e)
         {
             string name = (sender as Button).Text;
             purchase["name"] = name;
 
-            CheckBox cb = new CheckBox()
-            {
-                Text = "Ice cubes",
-                Name = "WithIceCubes",
-                Location = new Point(350, 300),
-                Size = new Size(120, 40),
-            };
+            CheckBox cb = CreateCheckBox("Ice cubes", "WithIceCubes");
+           
             VendingMachine.TabPages[1].Controls.Add(cb);
 
 
@@ -209,13 +198,13 @@ namespace VendingHouse
                 Apply(2);
             };
             VendingMachine.TabPages[1].Controls.Add(this.applyBtn);
-           
+
         }
 
-        public void Apply( int selectedIdx)
+        public void Apply(int selectedIdx)
         {
             VendingMachine.TabPages[selectedIdx].Controls.Clear();
-           ((PurchaseMediator)this.mediator).Notify(purchase, purchase["type"]);
+            ((PurchaseMediator)this.mediator).Notify(purchase, purchase["type"]);
             VendingMachine.SelectedIndex = 5;
             VendingMachine.SelectedIndex = selectedIdx;
 
@@ -223,12 +212,12 @@ namespace VendingHouse
             {
                 Text = $"{purchase["name"]} price: {purchase["price"]}$",
                 Location = new Point(300, 300),
-                Size = new Size(150,120)
+                Size = new Size(150, 120)
             };
             Button btn = new Button()
             {
                 Text = "Pay",
-                Location = new Point(450,300),
+                Location = new Point(450, 300),
                 Size = new Size(120, 40),
             };
             TextBox tb = new TextBox()
@@ -237,29 +226,33 @@ namespace VendingHouse
                 Size = new Size(120, 40),
                 Text = "insert money"
             };
-            tb.Click += (s, e2) => {
+            tb.Click += (s, e2) =>
+            {
                 tb.Clear();
             };
-            btn.Click += (s, e2) => {
-                double outAmount = 0,price;
+            btn.Click += (s, e2) =>
+            {
+                double outAmount = 0, price;
                 price = double.Parse(purchase["price"]);
-               bool isDouble = double.TryParse(tb.Text,out outAmount);
+                bool isDouble = double.TryParse(tb.Text, out outAmount);
                 if (isDouble && outAmount >= price&& outAmount<=100)
                 {
-                    double excess = ((PurchaseMediator)this.mediator).Pay(price, outAmount);
+                    purchase["excess"] = outAmount.ToString();
+                    ((PurchaseMediator)this.mediator).Notify(purchase, "pay");
+                    double excess = double.Parse(purchase["excess"]);
                     this.backBtn.Visible = false;
                     VendingMachine.SelectedIndex = selectedIdx + 1;
                     VendingMachine.TabPages[selectedIdx+1].Controls.Add(label);
                     label.Text = "The purchase was completed successfully. \n";
-                    label.Text +=excess>0? $"Excess: { excess}$":"";
+                    label.Text +=excess>0 ? $"Excess: {excess}$" : "";
                     MessageBox.Show(purchase["getProduct"]);
                 }
-              
+
                 else MessageBox.Show("Please enter a correct amount");
                 /////////////////////////////////////////////////////////////////
-                ((PurchaseMediator)this.mediator).Notify(purchase, "pay");
-                ((PurchaseMediator)this.mediator).Notify(purchase, "printReport");
-            }; 
+
+                //((PurchaseMediator)this.mediator).Notify(purchase, "printReport");
+            };
             VendingMachine.TabPages[selectedIdx].Controls.AddRange(new List<Control>() { label, btn, tb }.ToArray());
         }
 
@@ -269,6 +262,32 @@ namespace VendingHouse
             int index = VendingMachine.SelectedIndex;
             VendingMachine.SelectedIndex = index > 0 ? index - 1 : index;
         }
-          
+        private Button CreateButton(string text, string name, int y = 100)
+        {
+            int width = VendingMachine.Size.Width;
+
+            Button btn = new Button()
+            {
+                Text = text,
+                Name = name,
+                Size = new Size(180, 60)
+               
+            };
+            btn.Location = new Point((width - btn.Size.Width)/2, y);
+            return btn;
+        }
+        private CheckBox CreateCheckBox(string text, string name, int y = 300)
+        {
+            int width = VendingMachine.Size.Width;
+            CheckBox cb = new CheckBox()
+            {
+                Text = text,
+                Name = name,
+                Size = new Size(100, 50)
+            };
+            cb.Location = new Point((width - cb.Size.Width)/2, y);
+            return cb;
+
+        }
     }
 }
