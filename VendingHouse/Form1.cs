@@ -166,7 +166,7 @@ namespace VendingHouse
 
             this.applyBtn.Click += (s, e2) =>
             {
-                purchase["getProduct"] = CreateHotDrink();
+                CreateHotDrink();
                 Apply(3);
 
             };
@@ -174,7 +174,7 @@ namespace VendingHouse
             
         }
 
-        private string CreateHotDrink()
+        private void CreateHotDrink()
         {
             List<string> methods = new List<string>();
 
@@ -185,7 +185,8 @@ namespace VendingHouse
                     methods.Add(checkBox.Name);
                 }
             }
-            return ((PurchaseMediator)this.mediator).HotDrinkCreator(methods);
+            purchase["methods"] = string.Join(",", methods);
+             ((PurchaseMediator)this.mediator).Notify(purchase, "createHotDrink");
         }
         private void CreateColdDrinkCheckbox(object sender, EventArgs e)
         {

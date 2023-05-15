@@ -103,9 +103,8 @@
     <Compile Include="Mediator\PurchaseMediator.cs" />
     <Compile Include="Report\Actions.cs" />
     <Compile Include="Report\DailyReport.cs" />
-    <Compile Include="Report\IPrintingManager.cs" />
     <Compile Include="Report\Report.cs" />
-    <Compile Include="Report\TxtPrintingManager.cs" />
+    <Compile Include="Report\TextDailyReport.cs" />
     <Compile Include="Edible\Product\Snack.cs" />
     <Compile Include="Supplier.cs" />
     <EmbeddedResource Include="Form1.resx">

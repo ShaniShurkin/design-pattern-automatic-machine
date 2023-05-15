@@ -25,12 +25,10 @@ namespace VendingHouse
 
         private DailyReport dailyReport;
 
-        private readonly IPrintingManager printingManager;
-
         public PurchaseMediator()
         {
             this.machine = Machine.MyMachine;
-            this.dailyReport = new DailyReport();
+            this.dailyReport = new TextDailyReport();
         }
 
         public List<Product> ProductList(string type)
@@ -62,7 +60,7 @@ namespace VendingHouse
 
         }
 
-        public string HotDrinkCreator(List<string> operations)
+        private string HotDrinkCreator(List<string> operations)
         {
             List<string> list = new List<string>() { "Reset", "AddHotWater" };
             string drinkMaker = this.hotDrink.DrinkMaker.GetType().Name;
@@ -96,7 +94,7 @@ namespace VendingHouse
             }
 
         }
-        public string ColdDrinkCreator(string name, bool hasIce)
+        private string ColdDrinkCreator(string name, bool hasIce)
         {
             List<string> list = new List<string>() { name };
             list.Add(hasIce ? bool.TrueString : bool.FalseString);
@@ -148,7 +146,6 @@ namespace VendingHouse
         }
         public void Notify(Dictionary<string, string> purchase,string operation)
         {
-    
 
             switch (operation)
             {
@@ -168,12 +165,12 @@ namespace VendingHouse
                     purchase["getProduct"] = this.ColdDrinkCreator(purchase["name"], bool.Parse(purchase["hasIce"]));
                     return;
                 case "createHotDrink":
-                   // purchase["getProduct"] = this.ho
+                    purchase["getProduct"] = this.HotDrinkCreator(purchase["methods"].Split(',').ToList());
                     return;
                 case "printReport":
                     this.dailyReport.Print();
                     return;
-
+                
             }
         }
         public void Notify(object sender)

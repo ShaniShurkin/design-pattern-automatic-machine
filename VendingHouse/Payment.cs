@@ -6,21 +6,8 @@ using System.Threading.Tasks;
 
 namespace VendingHouse
 {
-    internal class Payment:IMediator
+    internal class Payment
     {
-        protected IMediator mediator;
-
-        public void SetMediator(IMediator mediator)
-        {
-            this.mediator = mediator;
-        }
-
-        public void Notify(object sender)
-        {
-            mediator.Notify(this);
-        }
-        
-
         public double Pay(double price, double amountReceived)
         {
             return amountReceived - price;

@@ -7,9 +7,8 @@ using System.Timers;
 
 namespace VendingHouse.Report
 {
-    internal class DailyReport:IMediator
+    internal abstract class DailyReport
     {
-        protected IMediator Mediator { get; set; }
         public List<Report> Reports { get; set; }
         private readonly Timer timer;
         public DailyReport()
@@ -21,10 +20,6 @@ namespace VendingHouse.Report
             timer.Start();
         }
 
-        public void SetMediator(IMediator mediator)
-        {
-            this.Mediator = mediator;
-        }
         public void AddReport(DateTime date, string product, Actions action, string details = "")
         {
             Report report = new Report(date, product, action, details);
@@ -42,14 +37,6 @@ namespace VendingHouse.Report
             }
         }
 
-        public void Print()
-        {
-            TxtPrintingManager t = new TxtPrintingManager();
-            t.Print(Reports);
-        }
-        public void Notify(object sender)
-        {
-            Mediator.Notify(this);
-        }
+        public abstract void Print();
     }
 }

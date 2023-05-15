@@ -1,0 +1,5 @@
+2023-05-15
+23
+Coca Cola was selling, price: 7$
+23
+Chocolate Milk was selling, price: 12$
