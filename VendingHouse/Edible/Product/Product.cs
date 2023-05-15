@@ -29,11 +29,6 @@ namespace VendingHouse
             
             _Product = product;
         }
-
-        //public void SetMediator(IMediator mediator)
-        //{
-        //    this.Mediator = mediator;
-        //}
         public abstract string GetProduct();
 
         public void Notify(object sender)
