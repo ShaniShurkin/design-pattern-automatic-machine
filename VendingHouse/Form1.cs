@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using VendingHouse.Edible.PersonalPreparationDrink;
 
 namespace VendingHouse
 {
@@ -19,8 +20,8 @@ namespace VendingHouse
             InitializeComponent();
             this.mediator = mediator;
             this.purchase = new Dictionary<string, string>();
-            this.applyBtn = CreateButton("Apply", "applyBtn", VendingMachine.Height-100);
-           
+            this.applyBtn = CreateButton("Apply", "applyBtn", VendingMachine.Height - 100);
+
 
             //mediator = DependencyManager.Resolve<IMediator>();
         }
@@ -41,39 +42,59 @@ namespace VendingHouse
         private void ProductBtn_Click(object sender, EventArgs e)
         {
             purchase["type"] = "product";
-            List<string> products = ((PurchaseMediator)mediator).GetCategoriesList("products");
+            List<string> products = ((PurchaseMediator)mediator).GetCategoriesList();
             CreateBtns(products, CreateProdutList);
         }
 
         private void HotDrinkBtn_Click(object sender, EventArgs e)
         {
             purchase["type"] = "hot drink";
-            List<string> hotDrinks = ((PurchaseMediator)mediator).GetCategoriesList("hotDrinks");
-            CreateBtns(hotDrinks, CreateHotDrinkOperationList);
+            List<HotDrink> hotDrinks = ((PurchaseMediator)mediator).GetHotDrinksList();
+           //var x =  CoffeeMaker.Image;
+            //var i = hotDrinks.First();
+            //var x = i.DrinkMaker.GetType();
+            //var c = x;
+            //List<Image> imgs = hotDrinks.Select(_ => _.DrinkMaker.GetType().GetProperty("Image").GetValue);
+            CreateBtns(hotDrinks.Select(_ => _.Name).ToList(), CreateHotDrinkOperationList, hotDrinks.Select(_ => _.BasicPrice).ToList());
         }
 
         private void ColdDrinkBtn_Click(object sender, EventArgs e)
         {
             purchase["type"] = "cold drink";
-            List<string> coldDrinks = ((PurchaseMediator)mediator).GetCategoriesList("coldDrinks");
-            CreateBtns(coldDrinks, CreateColdDrinkCheckbox);
+            List<ColdDrink> coldDrinks = ((PurchaseMediator)mediator).GetColdDrinksList();
+            CreateBtns(coldDrinks.Select(_ => _.Name).ToList(), CreateColdDrinkCheckbox, coldDrinks.Select(_ => _.BasicPrice).ToList());
+
         }
 
-        private void CreateBtns(List<string> names, EventHandler createList)
+
+        private void CreateBtns(List<string> names, EventHandler createList, List<double> prices = null, List<Image> imgs = null)
         {
             Button btn;
             VendingMachine.SelectedIndex = 1;
             int place = VendingMachine.SelectedIndex;
             VendingMachine.TabPages[place].Controls.Clear();
             int locationY = 100;
-            foreach (string name in names)
+            for (int i = 0; i < names.Count; i++)
             {
                 //check name
-                btn = CreateButton(name, "btn" + name, locationY);
+                btn = CreateButton(names[i], "btn" + names[i], locationY);
                 btn.Click += createList;
                 VendingMachine.TabPages[place].Controls.Add(btn);
-                locationY += 80;
 
+                if (prices != null)
+                {
+
+                    Label lbl = new Label()
+                    {
+                        Text =$" Price: { prices[i].ToString() }$", 
+                      
+                        Size = new Size(btn.Size.Width, 40),
+                       
+                    };
+                    lbl.Location = new Point((btn.Location.X + 10), locationY + btn.Height + 1);
+                    VendingMachine.TabPages[place].Controls.Add(lbl);
+                }
+                locationY += 100;
             }
         }
 
@@ -94,8 +115,8 @@ namespace VendingHouse
                 Image img = product.Image;
                 img = resizeImage(img, new Size(150, 130));
                 btn.Image = img;
-            
-                btn.Click +=(s, e2) =>
+
+                btn.Click += (s, e2) =>
                 {
                     purchase["name"] = product.Name;
                     GetMoreOptions();
@@ -110,16 +131,16 @@ namespace VendingHouse
             return (Image)(new Bitmap(imgToResize, size));
         }
 
-        
+
         private void GetMoreOptions()
         {
             VendingMachine.SelectedIndex = 3;
             int place = VendingMachine.SelectedIndex;
             VendingMachine.TabPages[place].Controls.Clear();
             int locationY = 100;
-            CheckBox c1 = CreateCheckBox("Add bag", "AddBagBtn", locationY+=80);
+            CheckBox c1 = CreateCheckBox("Add bag", "AddBagBtn", locationY += 80);
 
-            CheckBox c2 = CreateCheckBox("Add gift wrapping", "AddGiftWrappingBtn", locationY+=80);
+            CheckBox c2 = CreateCheckBox("Add gift wrapping", "AddGiftWrappingBtn", locationY += 80);
 
             //Image imgBag = c1.Image;
             //imgBag = resizeImage(imgBag, new Size(150, 130));
@@ -192,7 +213,7 @@ namespace VendingHouse
             purchase["name"] = name;
 
             CheckBox cb = CreateCheckBox("Ice cubes", "WithIceCubes");
-           
+
             VendingMachine.TabPages[1].Controls.Add(cb);
 
 
@@ -235,21 +256,21 @@ namespace VendingHouse
                 double outAmount = 0, price;
                 price = double.Parse(purchase["price"]);
                 bool isDouble = double.TryParse(tb.Text, out outAmount);
-                if (isDouble && outAmount >= price&& outAmount<=100)
+                if (isDouble && outAmount >= price && outAmount <= 100)
                 {
                     purchase["excess"] = outAmount.ToString();
                     ((PurchaseMediator)this.mediator).Notify(purchase, "pay");
                     double excess = double.Parse(purchase["excess"]);
                     this.backBtn.Visible = false;
                     VendingMachine.SelectedIndex = selectedIdx + 1;
-                    VendingMachine.TabPages[selectedIdx+1].Controls.Add(label);
+                    VendingMachine.TabPages[selectedIdx + 1].Controls.Add(label);
                     label.Text = "The purchase was completed successfully. \n";
-                    label.Text +=excess>0 ? $"Excess: {excess}$" : "";
+                    label.Text += excess > 0 ? $"Excess: {excess}$" : "";
                     MessageBox.Show(purchase["getProduct"]);
                 }
 
                 else MessageBox.Show("Please enter a correct amount");
-                
+
 
                 //((PurchaseMediator)this.mediator).Notify(purchase, "printReport");
             };
@@ -271,9 +292,9 @@ namespace VendingHouse
                 Text = text,
                 Name = name,
                 Size = new Size(180, 60)
-               
+
             };
-            btn.Location = new Point((width - btn.Size.Width)/2, y);
+            btn.Location = new Point((width - btn.Size.Width) / 2, y);
             return btn;
         }
         private CheckBox CreateCheckBox(string text, string name, int y = 300)
@@ -285,7 +306,7 @@ namespace VendingHouse
                 Name = name,
                 Size = new Size(180, 60)
             };
-            cb.Location = new Point((width - cb.Size.Width)/2, y);
+            cb.Location = new Point((width - cb.Size.Width) / 2, y);
             //cb.Appearance = Appearance.Button;
             return cb;
 

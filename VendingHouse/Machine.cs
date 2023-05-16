@@ -40,14 +40,14 @@ namespace VendingHouse
             Products.Add("snacks", new List<Product>());
 
             HotDrinks = new Dictionary<string, HotDrink>();
-            HotDrinks.Add("coffee", new HotDrink("coffee", new CoffeeMaker()));
-            HotDrinks.Add("chocolate milk", new HotDrink("chocolate milk", new ChocolateMilkMaker()));
-            HotDrinks.Add("tea", new HotDrink("tea", new TeaMaker()));
+            HotDrinks.Add("coffee", new HotDrink("coffee", new CoffeeMaker(), 8));
+            HotDrinks.Add("chocolate milk", new HotDrink("chocolate milk", new ChocolateMilkMaker(), 6));
+            HotDrinks.Add("tea", new HotDrink("tea", new TeaMaker(), 6));
 
             ColdDrinks = new Dictionary<string, ColdDrink>();
-            ColdDrinks.Add("orange juice", new ColdDrink("orange juice"));
-            ColdDrinks.Add("apple juice", new ColdDrink("apple juice"));
-            ColdDrinks.Add("water", new ColdDrink("water"));
+            ColdDrinks.Add("orange juice", new ColdDrink("orange juice", 6));
+            ColdDrinks.Add("apple juice", new ColdDrink("apple juice", 5));
+            ColdDrinks.Add("water", new ColdDrink("water", 4));
 
             Ingredients = new Dictionary<string, Ingredient>();
             Ingredients.Add("cups", new Ingredient("cups", 300, 50,1,"Cup"));

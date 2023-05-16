@@ -1,6 +1,7 @@
 ﻿
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Reflection;
 using VendingHouse.Decorator;
@@ -29,10 +30,59 @@ namespace VendingHouse
             this.dailyReport = new TextDailyReport();
         }
 
+        //products operations
+        public List<string> GetCategoriesList()
+        {
+            return this.machine.Products.Keys.ToList();
+        }
+        public List<string> GetProductsNamesList(string type)
+        {
+            return machine.Products[type.ToLower()].Select(_ => _.Name).ToList();
+        }
+        public List<double> GetProductsPricesList(string type)
+        {
+            return machine.Products[type.ToLower()].Select(_ => _.Price).ToList();
+        }
+        public List<Image> GetProductsImagesList(string type)
+        {
+            return machine.Products[type.ToLower()].Select(_ => _.Image).ToList();
+        }
         public List<Product> ProductList(string type)
         {
             List<Product> list = machine.Products[type.ToLower()];
             return list;
+        }
+        private void ProductDecorations(Dictionary<string, string> purchase)
+        {
+            this.product = ProductList(purchase["subType"]).Find(p => p.Name == purchase["name"]);
+            bool withBag = bool.Parse(purchase["withBag"]);
+            bool withGiftWrapping = bool.Parse(purchase["withGiftWrapping"]);
+            this.product.Price += withBag ? 1 : 0;
+            this.product.Price += withGiftWrapping ? 2 : 0;
+            this.product = withBag ? new Bag(this.product) : this.product;
+            this.product = withGiftWrapping ? new GiftWrapping(this.product) : this.product;
+            purchase["price"] = this.product.Price.ToString();
+            purchase["getProduct"] = this.product.GetProduct();
+
+        }
+
+        //hot drinks operations
+        public List<string> GetHotDrinksNamesList()
+        {
+            return machine.HotDrinks.Keys.ToList();
+        }
+        public List<double> GetHotDrinksPricesList()
+        {
+            return machine.HotDrinks.Values.Select(_ => _.BasicPrice).ToList();
+        }
+        public List<Image> GetHotDrinksImagesList()
+        {
+            List<Image> images = new List<Image>();
+            return images;
+        }
+        public List<HotDrink> GetHotDrinksList()
+        {
+            return this.machine.HotDrinks.Values.ToList();
         }
 
         public List<string> HotDrinkMethods(string type)
@@ -57,7 +107,6 @@ namespace VendingHouse
             return list;
 
         }
-
         private List<string> HotDrinkGetMethods(List<string> operations)
         {
             List<string> list = new List<string>() { "Reset", "AddHotWater" };
@@ -70,6 +119,25 @@ namespace VendingHouse
             return list;
 
         }
+
+        //cold drinks operations
+        private string ColdDrinkCreator(string name, bool hasIce)
+        {
+            List<string> list = new List<string>() { name };
+            list.Add(hasIce ? bool.TrueString : bool.FalseString);
+            this.coldDrink = this.machine.ColdDrinks[name];
+            this.coldDrink.HasIce = hasIce;
+            this.coldDrink.BasicPrice += hasIce ? 2 : 0;
+            return this.coldDrink.Make(list);
+        }
+        public List<ColdDrink> GetColdDrinksList()
+        {
+            return this.machine.ColdDrinks.Values.ToList();
+        }
+
+        #region purchase operations
+
+        //machine operations
         private List<string> RemoveIngredients(List<string> operations)
         {
             List<string> keys = new List<string>();
@@ -91,56 +159,14 @@ namespace VendingHouse
             }
             return keys;
         }
-        private string ColdDrinkCreator(string name, bool hasIce)
-        {
-            List<string> list = new List<string>() { name };
-            list.Add(hasIce ? bool.TrueString : bool.FalseString);
-            this.coldDrink = new ColdDrink(name, hasIce);
-            this.coldDrink.BasicPrice += hasIce ? 2 : 0;
-            return this.coldDrink.Make(list);
-        }
-        public List<string> GetCategoriesList(string type)
-        {
-            List<string> list;
-            switch (type)
-            {
-                case "products":
-                    list = this.machine.Products.Keys.ToList();
-                    return list;
-                case "hotDrinks":
-                    list = this.machine.HotDrinks.Keys.ToList();
-                    return list;
-                case "coldDrinks":
-                    list = this.machine.ColdDrinks.Keys.ToList();
-                    return list;
 
-            }
-            return null;
-        }
-
-        private void ProductOperation(Dictionary<string, string> purchase)
-        {
-            this.product = ProductList(purchase["subType"]).Find(p => p.Name == purchase["name"]);
-            bool withBag = bool.Parse(purchase["withBag"]);
-            bool withGiftWrapping = bool.Parse(purchase["withGiftWrapping"]);
-            this.product.Price += withBag ? 1 : 0;
-            this.product.Price += withGiftWrapping ? 2 : 0;
-            this.product = withBag ? new Bag(this.product) : this.product;
-            this.product = withGiftWrapping ? new GiftWrapping(this.product) : this.product;
-            purchase["price"] = this.product.Price.ToString();
-            purchase["getProduct"] = this.product.GetProduct();
-
-        }
-        public double Pay(double price, double amount)
-        {
-            this.payment = new Payment();
-            return this.payment.Pay(price, amount);
-        }
-
+        //report operations
         private void CreateReport(string name, Actions action, string price)
         {
             this.dailyReport.AddReport(DateTime.Now, name, action, $"price: {price}$");
         }
+
+        //supplier operations
         private void MessageToSupplier(List<string> keysToMessage, Supplier supplier)
         {
             if (keysToMessage.Count == 0)
@@ -152,6 +178,17 @@ namespace VendingHouse
             }
 
         }
+        
+        //payment operations
+        public double Pay(double price, double amount)
+        {
+            this.payment = new Payment();
+            return this.payment.Pay(price, amount);
+        }
+
+        #endregion
+
+        //mediator - external 
         public void Notify(Dictionary<string, string> purchase, string operation)
         {
 

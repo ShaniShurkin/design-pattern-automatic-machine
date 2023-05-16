@@ -9,9 +9,8 @@ namespace VendingHouse
     internal class ColdDrink : HotColdDrink
     {
         public bool HasIce { get; set; }
-        
-        public ColdDrink(string name, bool hasIce = true) :
-            base(name, 8)
+        public ColdDrink(string name, double price, bool hasIce = true) :
+            base(name, price)
         {
             this.HasIce=hasIce;
         }

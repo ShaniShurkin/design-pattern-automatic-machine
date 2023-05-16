@@ -12,7 +12,7 @@ namespace VendingHouse
     internal abstract class DrinkMaker : IDrinkMaker
     {
         static string imgPath;
-        static Image Image { get; set; }
+        public static Image Image { get; set; }
 
        public DrinkMaker(string path)
         {
