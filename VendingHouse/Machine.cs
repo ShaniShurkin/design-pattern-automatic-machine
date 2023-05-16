@@ -5,6 +5,7 @@ namespace VendingHouse
 {
     internal class Machine
     {
+
         public Dictionary<string, List<Product>> Products { get; private set; }
         public Dictionary<string, Ingredient> Ingredients { get; private set; }
         static Machine myMachine;

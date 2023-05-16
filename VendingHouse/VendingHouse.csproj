@@ -143,6 +143,9 @@
     <Content Include="Resources\Cans\ספרייט2.png" />
     <Content Include="Resources\Cans\פנטה.jpg" />
     <Content Include="Resources\Cans\קולה.png" />
+    <Content Include="Resources\HotDrink\coffee.jpg" />
+    <Content Include="Resources\HotDrink\shoko.jpeg" />
+    <Content Include="Resources\HotDrink\tea.jpg" />
     <Content Include="Resources\Snacks\ביסלי.jpg" />
     <Content Include="Resources\Snacks\צ%27יפס.jpg" />
     <Content Include="Resources\Snacks\תן צאפ.jpg" />

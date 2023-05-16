@@ -37,11 +37,13 @@ namespace VendingHouse
 
         public List<string> HotDrinkMethods(string type)
         {
+          
             List<string> list = new List<string>();
             string className = type.Replace(" ", "") + "Maker";
             Type classType = Type.GetType("VendingHouse.Edible.PersonalPreparationDrink." + className);
             IDrinkMaker drinkMaker = (IDrinkMaker)Activator.CreateInstance(classType, this.machine);
             this.hotDrink = new HotDrink(type, drinkMaker);
+
 
             if (classType != null)
             {

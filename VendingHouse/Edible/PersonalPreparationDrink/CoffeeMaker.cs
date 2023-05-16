@@ -2,9 +2,10 @@
 {
     internal class CoffeeMaker : DrinkMaker
     {
-        public CoffeeMaker(Machine machine) : base(machine)
+        static string imgPath = "..//..//Resources//HotDrink//coffee.jpg";
+        public CoffeeMaker(Machine machine) : base(machine,imgPath)
         {
-
+            
         }
 
 

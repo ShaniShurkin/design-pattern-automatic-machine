@@ -82,54 +82,53 @@ namespace VendingHouse
             VendingMachine.SelectedIndex = 2;
             int place = VendingMachine.SelectedIndex;
             VendingMachine.TabPages[place].Controls.Clear();
-            int locationY = 100;
+            int locationY = 40;
             string name = (sender as Button).Text;
             purchase["subType"] = name;
             List<Product> list = ((PurchaseMediator)mediator).ProductList(name);
             foreach (Product product in list)
             {
                 Button btn = CreateButton("", product.Name + "Btn", locationY);
-                btn.Size = new Size(150, 150);
+                btn.Size = new Size(130, 130);
                 locationY += 50;
                 Image img = product.Image;
+                img = resizeImage(img, new Size(150, 130));
                 btn.Image = img;
-                //to change size
-                //PictureBox pictureBox = new PictureBox()
-                //{
-                //    Location = new Point(300, locationY)
-                //};
-                //pictureBox.Image = img;
+            
                 btn.Click +=(s, e2) =>
                 {
                     purchase["name"] = product.Name;
                     GetMoreOptions();
                 };
                 VendingMachine.TabPages[place].Controls.Add(btn);
-
-               // VendingMachine.TabPages[place].Controls.Add(pictureBox);
                 locationY += 80;
             }
 
         }
+        public static Image resizeImage(Image imgToResize, Size size)
+        {
+            return (Image)(new Bitmap(imgToResize, size));
+        }
 
+        
         private void GetMoreOptions()
         {
             VendingMachine.SelectedIndex = 3;
             int place = VendingMachine.SelectedIndex;
             VendingMachine.TabPages[place].Controls.Clear();
-            CheckBox c1 = new CheckBox()
-            {
-                Text = "Add bag",
-                Location = new Point(400, 150),
-                Size = new Size(100, 40),
-            };
+            int locationY = 100;
+            CheckBox c1 = CreateCheckBox("Add bag", "AddBagBtn", locationY+=80);
 
-            CheckBox c2 = new CheckBox()
-            {
-                Text = "Add gift wrapping",
-                Location = new Point(500, 150),
-                Size = new Size(180, 40),
-            };
+            CheckBox c2 = CreateCheckBox("Add gift wrapping", "AddGiftWrappingBtn", locationY+=80);
+
+            //Image imgBag = c1.Image;
+            //imgBag = resizeImage(imgBag, new Size(150, 130));
+            //c1.Image = imgBag;
+            //Image img = c2.Image;
+            //img = resizeImage(img, new Size(150, 130));
+            //c2.Image = img;
+
+
             this.applyBtn.Click += (s, e2) =>
             {
                 purchase["withBag"] = c1.Checked.ToString();
@@ -157,14 +156,7 @@ namespace VendingHouse
             List<string> list = ((PurchaseMediator)mediator).HotDrinkMethods(name);
             foreach (string method in list)
             {
-                CheckBox cb = new CheckBox()
-                {
-                    Text = method,
-                    Name = method.Replace(" ", ""),
-                    Location = new Point(300, locationY),
-                    Size = new Size(120, 40),
-                };
-
+                CheckBox cb = CreateCheckBox(method, method.Replace(" ", ""), locationY);
                 VendingMachine.TabPages[place].Controls.Add(cb);
                 locationY += 60;
 
@@ -226,12 +218,8 @@ namespace VendingHouse
                 Location = new Point(300, 300),
                 Size = new Size(150, 120)
             };
-            Button btn = new Button()
-            {
-                Text = "Pay",
-                Location = new Point(450, 300),
-                Size = new Size(120, 40),
-            };
+            Button btn = CreateButton("Pay", "PayBtn", 250);
+
             TextBox tb = new TextBox()
             {
                 Location = new Point(450, 350),
@@ -261,7 +249,7 @@ namespace VendingHouse
                 }
 
                 else MessageBox.Show("Please enter a correct amount");
-                /////////////////////////////////////////////////////////////////
+                
 
                 //((PurchaseMediator)this.mediator).Notify(purchase, "printReport");
             };
@@ -295,9 +283,10 @@ namespace VendingHouse
             {
                 Text = text,
                 Name = name,
-                Size = new Size(100, 50)
+                Size = new Size(180, 60)
             };
             cb.Location = new Point((width - cb.Size.Width)/2, y);
+            //cb.Appearance = Appearance.Button;
             return cb;
 
         }
