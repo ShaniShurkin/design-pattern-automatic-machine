@@ -37,24 +37,23 @@ namespace VendingHouse
 
         public List<string> HotDrinkMethods(string type)
         {
-          
+
             List<string> list = new List<string>();
-            string className = type.Replace(" ", "") + "Maker";
-            Type classType = Type.GetType("VendingHouse.Edible.PersonalPreparationDrink." + className);
-            IDrinkMaker drinkMaker = (IDrinkMaker)Activator.CreateInstance(classType, this.machine);
-            this.hotDrink = new HotDrink(type, drinkMaker);
+            //string className = type.Replace(" ", "") + "Maker";
+            IDrinkMaker drinkMaker = this.machine.HotDrinks[type].DrinkMaker;
+            Type makerType = drinkMaker.GetType();
 
+            this.hotDrink = this.machine.HotDrinks[type];
 
-            if (classType != null)
+            if (makerType != null)
             {
-                MethodInfo[] methods = classType.GetMethods(BindingFlags.Public | BindingFlags.Instance)
+                MethodInfo[] methods = makerType.GetMethods(BindingFlags.Public | BindingFlags.Instance)
                     .Where(m => m.GetCustomAttributes(typeof(OptionalAttribute), false).Length > 0).ToArray();
                 foreach (var method in methods)
                 {
                     list.Add(method.Name.Replace("Add", "Add "));
                 }
             }
-
             return list;
 
         }
@@ -106,7 +105,7 @@ namespace VendingHouse
             switch (type)
             {
                 case "products":
-                    list = new List<string>() { "Cans", "Bottles", "Snacks" };
+                    list = this.machine.Products.Keys.ToList();
                     return list;
                 case "hotDrinks":
                     list = this.machine.HotDrinks.Keys.ToList();
@@ -146,9 +145,10 @@ namespace VendingHouse
         {
             if (keysToMessage.Count == 0)
                 return;
-            foreach (string key in keysToMessage) {
+            foreach (string key in keysToMessage)
+            {
                 //get message to some place........
-                supplier.Message(key); 
+                supplier.Message(key);
             }
 
         }
