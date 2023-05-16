@@ -3,7 +3,7 @@
     internal class ChocolateMilkMaker : DrinkMaker
     {
         static string imgPath = "..//..//Resources//HotDrink//shoko.jpeg";
-        public ChocolateMilkMaker(Machine machine) : base(machine,imgPath)
+        public ChocolateMilkMaker() : base(imgPath)
         {
         }
 

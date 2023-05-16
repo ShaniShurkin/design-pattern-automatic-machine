@@ -19,7 +19,7 @@ namespace VendingHouse
             InitializeComponent();
             this.mediator = mediator;
             this.purchase = new Dictionary<string, string>();
-            this.applyBtn = CreateButton("Apply", "applyBtn", VendingMachine.Height-50);
+            this.applyBtn = CreateButton("Apply", "applyBtn", VendingMachine.Height-100);
            
 
             //mediator = DependencyManager.Resolve<IMediator>();

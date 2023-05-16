@@ -109,10 +109,10 @@ namespace VendingHouse
                     list = new List<string>() { "Cans", "Bottles", "Snacks" };
                     return list;
                 case "hotDrinks":
-                    list = new List<string>() { "Coffee", "Chocolate Milk", "Tea" };
+                    list = this.machine.HotDrinks.Keys.ToList();
                     return list;
                 case "coldDrinks":
-                    list = new List<string>() { "Orange Juice", "Apple Juice", "Water" };
+                    list = this.machine.ColdDrinks.Keys.ToList();
                     return list;
 
             }

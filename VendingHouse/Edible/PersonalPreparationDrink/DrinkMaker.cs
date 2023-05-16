@@ -14,10 +14,8 @@ namespace VendingHouse
         static string imgPath;
         static Image Image { get; set; }
 
-        protected Machine machine;
-        public DrinkMaker(Machine machine,string path)
+       public DrinkMaker(string path)
         {
-            this.machine = machine;
             imgPath = path;
             if (Path.IsPathRooted(path) && Directory.Exists(Path.GetPathRoot(path)))
             {

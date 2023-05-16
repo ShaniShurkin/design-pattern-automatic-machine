@@ -3,7 +3,7 @@
     internal class TeaMaker : DrinkMaker
     {
         static string imgPath = "..//..//Resources//HotDrink//tea.jpg";
-        public TeaMaker(Machine machine) : base(machine,imgPath)
+        public TeaMaker() : base(imgPath)
         {
         }
 

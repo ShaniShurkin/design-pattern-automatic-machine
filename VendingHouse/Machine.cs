@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using VendingHouse.Edible.PersonalPreparationDrink;
 
 namespace VendingHouse
 {
@@ -7,6 +8,10 @@ namespace VendingHouse
     {
 
         public Dictionary<string, List<Product>> Products { get; private set; }
+        public Dictionary<string, HotDrink> HotDrinks { get; private set; }
+        public Dictionary<string, ColdDrink> ColdDrinks { get; private set; }
+
+
         public Dictionary<string, Ingredient> Ingredients { get; private set; }
         static Machine myMachine;
         static object locker = new object();
@@ -33,6 +38,16 @@ namespace VendingHouse
             Products.Add("bottles", new List<Product>());
             Products.Add("cans", new List<Product>());
             Products.Add("snacks", new List<Product>());
+
+            HotDrinks = new Dictionary<string, HotDrink>();
+            HotDrinks.Add("coffee", new HotDrink("coffee", new CoffeeMaker()));
+            HotDrinks.Add("chocolate milk", new HotDrink("chocolate milk", new ChocolateMilkMaker()));
+            HotDrinks.Add("tea", new HotDrink("tea", new TeaMaker()));
+
+            ColdDrinks = new Dictionary<string, ColdDrink>();
+            ColdDrinks.Add("orange juice", new ColdDrink("orange juice"));
+            ColdDrinks.Add("apple juice", new ColdDrink("apple juice"));
+            ColdDrinks.Add("water", new ColdDrink("water"));
 
             Ingredients = new Dictionary<string, Ingredient>();
             Ingredients.Add("cups", new Ingredient("cups", 300, 50,1,"Cup"));
