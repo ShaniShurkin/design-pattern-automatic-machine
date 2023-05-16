@@ -93,8 +93,7 @@ namespace VendingHouse
                 locationY += 50;
                 Image img = product.Image;
                 btn.Image = img;
-                btn.Image.Width = 100;
-                
+                //to change size
                 //PictureBox pictureBox = new PictureBox()
                 //{
                 //    Location = new Point(300, locationY)
