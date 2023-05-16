@@ -54,7 +54,7 @@ namespace VendingHouse
             this.VendingMachine.Location = new System.Drawing.Point(7, 7);
             this.VendingMachine.Name = "VendingMachine";
             this.VendingMachine.SelectedIndex = 0;
-            this.VendingMachine.Size = new System.Drawing.Size(1316, 606);
+            this.VendingMachine.Size = new System.Drawing.Size(1441, 633);
             this.VendingMachine.TabIndex = 7;
             // 
             // tabPage1
@@ -62,7 +62,7 @@ namespace VendingHouse
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1308, 577);
+            this.tabPage1.Size = new System.Drawing.Size(1433, 604);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
@@ -71,7 +71,7 @@ namespace VendingHouse
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1308, 577);
+            this.tabPage2.Size = new System.Drawing.Size(1433, 604);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
@@ -80,7 +80,7 @@ namespace VendingHouse
             this.tabPage3.Location = new System.Drawing.Point(4, 25);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(1308, 577);
+            this.tabPage3.Size = new System.Drawing.Size(1433, 604);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
@@ -89,7 +89,7 @@ namespace VendingHouse
             this.tabPage4.Location = new System.Drawing.Point(4, 25);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(1308, 577);
+            this.tabPage4.Size = new System.Drawing.Size(1433, 604);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
@@ -98,7 +98,7 @@ namespace VendingHouse
             this.tabPage5.Location = new System.Drawing.Point(4, 25);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(1308, 577);
+            this.tabPage5.Size = new System.Drawing.Size(1433, 604);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.UseVisualStyleBackColor = true;
             // 
@@ -107,7 +107,7 @@ namespace VendingHouse
             this.tabPage6.Location = new System.Drawing.Point(4, 25);
             this.tabPage6.Name = "tabPage6";
             this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage6.Size = new System.Drawing.Size(1308, 577);
+            this.tabPage6.Size = new System.Drawing.Size(1433, 604);
             this.tabPage6.TabIndex = 5;
             this.tabPage6.UseVisualStyleBackColor = true;
             // 
@@ -116,14 +116,14 @@ namespace VendingHouse
             this.settingsTab.Location = new System.Drawing.Point(4, 25);
             this.settingsTab.Name = "settingsTab";
             this.settingsTab.Padding = new System.Windows.Forms.Padding(3);
-            this.settingsTab.Size = new System.Drawing.Size(1308, 577);
+            this.settingsTab.Size = new System.Drawing.Size(1433, 604);
             this.settingsTab.TabIndex = 6;
             this.settingsTab.Text = "settings";
             this.settingsTab.UseVisualStyleBackColor = true;
             // 
             // backBtn
             // 
-            this.backBtn.Location = new System.Drawing.Point(654, 646);
+            this.backBtn.Location = new System.Drawing.Point(654, 657);
             this.backBtn.Name = "backBtn";
             this.backBtn.Size = new System.Drawing.Size(75, 23);
             this.backBtn.TabIndex = 8;

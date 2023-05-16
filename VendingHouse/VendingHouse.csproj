@@ -130,12 +130,22 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Resources\Snacks\ציפס טבעי %281%29.webp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\צ%27יפס.jpg" />
+    <Content Include="Resources\Bottles\מים בטעם.jpg" />
+    <Content Include="Resources\Bottles\מים.jpg" />
+    <Content Include="Resources\Bottles\סודה.jpg" />
+    <Content Include="Resources\Cans\XL.jpeg" />
+    <Content Include="Resources\Cans\ספרייט2.png" />
+    <Content Include="Resources\Cans\פנטה.jpg" />
+    <Content Include="Resources\Cans\קולה.png" />
+    <Content Include="Resources\Snacks\ביסלי.jpg" />
+    <Content Include="Resources\Snacks\צ%27יפס.jpg" />
+    <Content Include="Resources\Snacks\תן צאפ.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

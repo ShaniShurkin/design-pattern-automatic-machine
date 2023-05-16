@@ -4,8 +4,8 @@ namespace VendingHouse
 {
     internal class Snack : Product
     {
-        public Snack(string name, int amount, double price) : 
-            base(name, amount, price)
+        public Snack(string name, int amount, double price, string path) : 
+            base(name, amount, price, path )
         {
             MinAmount =15; 
             this.Supplier = new Supplier("Dan", "0519993231");

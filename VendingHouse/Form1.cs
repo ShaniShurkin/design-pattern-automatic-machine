@@ -32,7 +32,7 @@ namespace VendingHouse
             Button b1 = CreateButton("Product", "ProductBtn", locationY += 80);
             b1.Click += ProductBtn_Click;
             Button b2 = CreateButton("Hot Drink", "HotDrinkBtn", locationY += 80);
-            b1.Click += HotDrinkBtn_Click;
+            b2.Click += HotDrinkBtn_Click;
             Button b3 = CreateButton("Cold Drink", "ColdDrinkBtn", locationY += 80);
             b3.Click += ColdDrinkBtn_Click;
             VendingMachine.TabPages[0].Controls.AddRange(new List<Button>() { b1, b2, b3 }.ToArray());
@@ -88,13 +88,26 @@ namespace VendingHouse
             List<Product> list = ((PurchaseMediator)mediator).ProductList(name);
             foreach (Product product in list)
             {
-                Button btn = CreateButton(product.Name, product.Name + "Btn", locationY);
+                Button btn = CreateButton("", product.Name + "Btn", locationY);
+                btn.Size = new Size(150, 150);
+                locationY += 50;
+                Image img = product.Image;
+                btn.Image = img;
+                btn.Image.Width = 100;
+                
+                //PictureBox pictureBox = new PictureBox()
+                //{
+                //    Location = new Point(300, locationY)
+                //};
+                //pictureBox.Image = img;
                 btn.Click +=(s, e2) =>
                 {
                     purchase["name"] = product.Name;
                     GetMoreOptions();
                 };
                 VendingMachine.TabPages[place].Controls.Add(btn);
+
+               // VendingMachine.TabPages[place].Controls.Add(pictureBox);
                 locationY += 80;
             }
 
