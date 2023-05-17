@@ -40,6 +40,7 @@ namespace VendingHouse
                 Text = "Password"
             };
             b4.Click += (s, e2) => {
+                this.backBtn.Visible = false;
                 ManagerAction(tb.Text);
             }; 
             tb.Click+=(s, e2) => {
@@ -54,7 +55,7 @@ namespace VendingHouse
         private void ManagerAction(string password)
         {
             int place = 6;
-            if(password != "1111") {
+            if (password != "1111") {
                 MessageBox.Show("Wrong password!!!");
                 return;
             }
@@ -68,12 +69,23 @@ namespace VendingHouse
                 Location = new Point(b2.Location.X, b2.Location.Y+b2.Size.Height+20),
                 Size = b2.Size,
             };
+            Button b3 = CreateButton("Vednding machine", "VedndingMachineBtn", x: (VendingMachine.Width - 180) / 2, y: 400);
             b1.Click+=(s1, e1) =>
             {
-                MessageBox.Show(purchase.ContainsKey("messagesToSupplier") ? purchase["messagesToSupplier"] : "There are no messages");
+                MessageBox.Show(purchase.ContainsKey("messagesToSupplier")?( purchase["messagesToSupplier"]!="" ? purchase["messagesToSupplier"] : "There are no messages"): "There are no messages");
             };
-            b2.Click+=(s2, e2) => ((PurchaseMediator)mediator).Notify(purchase, "printReport");
-            VendingMachine.TabPages[place].Controls.AddRange(new List<Control>() { b1,b2,cb }.ToArray());
+            b2.Click += (s2, e2) =>
+            {
+                ((PurchaseMediator)mediator).Notify(purchase, "printReport");
+                MessageBox.Show("The daily report was successfully printed");
+            };
+            b3.Click += (s2, e2) =>
+            {
+                VendingMachine.SelectedIndex = 0;
+                this.backBtn.Visible = true;
+            };
+
+            VendingMachine.TabPages[place].Controls.AddRange(new List<Control>() { b1,b2,cb,b3 }.ToArray());
 
         }
 
@@ -96,7 +108,7 @@ namespace VendingHouse
             purchase["subType"] = name;
             List<Product> list = ((PurchaseMediator)mediator).ProductList(name);
             int locationX = (VendingMachine.Width-600)/2;
-            int locationY = (VendingMachine.Height-450)/2 + 100;
+            int locationY = (VendingMachine.Height-450)/2 + 50;
             foreach (Product product in list)
             {
                 Button btn = CreateButton("", product.Name + "Btn", locationX, locationY, 130, 130);
@@ -104,12 +116,15 @@ namespace VendingHouse
                 if(VendingMachine.Width -(locationX + btn.Size.Width) < 160)
                 {
                     locationX = (VendingMachine.Width-600)/2;
-                    locationY += 150;
+                    locationY += 170;
                 }
                 Image img = product.Image;
                 
                 img = resizeImage(img, new Size(150, 130));
+                
                 btn.Image = img;
+                btn.FlatStyle = FlatStyle.Flat;
+                btn.FlatAppearance.BorderSize = 0;
                 Label lbl = CreateLabel($"Price: {product.Price}$", x: btn.Location.X, y: btn.Location.Y + btn.Height + 1, width: btn.Size.Width, height: 40);
 
                 btn.Click += (s, e2) =>
@@ -130,14 +145,7 @@ namespace VendingHouse
             int locationY = 100;
             CheckBox c1 = CreateCheckBox("Add bag", "AddBagBtn", locationY += 80);
 
-            CheckBox c2 = CreateCheckBox("Add gift wrapping", "AddGiftWrappingBtn", locationY += 80);
-
-            //Image imgBag = c1.Image;
-            //imgBag = resizeImage(imgBag, new Size(150, 130));
-            //c1.Image = imgBag;
-            //Image img = c2.Image;
-            //img = resizeImage(img, new Size(150, 130));
-            //c2.Image = img;
+            CheckBox c2 = CreateCheckBox("Add gift wrapping", "AddGiftWrappingBtn", locationY += 40);
 
             Button applyBtn = CreateButton("Apply", "applyBtn",x: (VendingMachine.Width - 180)/2, y: VendingMachine.Height - 100);
             applyBtn.Click += (s, e2) =>
@@ -309,7 +317,7 @@ namespace VendingHouse
             ((PurchaseMediator)this.mediator).Notify(purchase, purchase["type"]);
             VendingMachine.SelectedIndex = 5;
             VendingMachine.SelectedIndex = selectedIdx;
-            string text = $"{purchase["name"]} price: {purchase["price"]}$";
+            string text = $"{purchase["name"]}\n price: {purchase["price"]}$";
             Label label = CreateLabel(text, (VendingMachine.Size.Width-200)/2, 120, 200, 100);
             
             Button btn = CreateButton("Pay", "PayBtn", y:350, x:(VendingMachine.Width - 180)/2);
@@ -336,17 +344,24 @@ namespace VendingHouse
                     ((PurchaseMediator)this.mediator).Notify(purchase, "pay");
                     double excess = double.Parse(purchase["excess"]);
                     this.backBtn.Visible = false;
+                    VendingMachine.TabPages[selectedIdx+1].Controls.Clear();
                     VendingMachine.SelectedIndex = selectedIdx + 1;
                     VendingMachine.TabPages[selectedIdx + 1].Controls.Add(label);
                     label.Text = "The purchase was completed successfully. \n";
                     label.Text += excess > 0 ? $"Excess: {excess}$" : "";
+                    Button startNewPrchase = CreateButton("Start a new purchase", "newPurchaseBtn", x: btn.Location.X, y: btn.Location.Y);
+                    startNewPrchase.Click += (s1, e1) => {
+                        VendingMachine.SelectedIndex = 0;
+                        this.backBtn.Visible = true;
+                    };
+                    VendingMachine.TabPages[selectedIdx + 1].Controls.Add(startNewPrchase);
                     MessageBox.Show(purchase["getProduct"]);
+                    
+                 
                 }
 
                 else MessageBox.Show("Please enter a correct amount");
 
-
-                //((PurchaseMediator)this.mediator).Notify(purchase, "printReport");
             };
             VendingMachine.TabPages[selectedIdx].Controls.AddRange(new List<Control>() { label, btn, tb }.ToArray());
         }
@@ -354,10 +369,6 @@ namespace VendingHouse
         {
         int index = VendingMachine.SelectedIndex;
         VendingMachine.SelectedIndex = index > 0 ? index - 1 : index;
-            if(index ==  0)
-            {
-               
-            }
         }
         
         

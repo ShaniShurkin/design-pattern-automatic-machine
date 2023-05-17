@@ -2,11 +2,6 @@
 {
     internal class TeaMaker : DrinkMaker
     {
-        static string imgPath = "..//..//Resources//HotDrink//tea.jpg";
-        public TeaMaker() : base(imgPath)
-        {
-        }
-
         public string AddTea()
         {
 

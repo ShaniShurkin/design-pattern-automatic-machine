@@ -71,7 +71,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DependencyManager.cs" />
     <Compile Include="Edible\PersonalPreparationDrink\ChocolateMilkMaker.cs" />
     <Compile Include="Edible\PersonalPreparationDrink\CoffeeMaker.cs" />
     <Compile Include="Edible\PersonalPreparationDrink\OptionalAttribute.cs" />
@@ -130,7 +129,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="Resources\Snacks\ציפס טבעי %281%29.webp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -139,6 +137,7 @@
     <Content Include="Resources\Bottles\מים בטעם.jpg" />
     <Content Include="Resources\Bottles\מים.jpg" />
     <Content Include="Resources\Bottles\סודה.jpg" />
+    <Content Include="Resources\Bottles\פרימור-תפוזים.jpg" />
     <Content Include="Resources\Cans\XL.jpeg" />
     <Content Include="Resources\Cans\ספרייט2.png" />
     <Content Include="Resources\Cans\פנטה.jpg" />
@@ -146,7 +145,12 @@
     <Content Include="Resources\HotDrink\coffee.jpg" />
     <Content Include="Resources\HotDrink\shoko.jpeg" />
     <Content Include="Resources\HotDrink\tea.jpg" />
+    <Content Include="Resources\Snacks\Dark.png" />
+    <Content Include="Resources\Snacks\twix.jpg" />
+    <Content Include="Resources\Snacks\אפרופו.jpg" />
     <Content Include="Resources\Snacks\ביסלי.jpg" />
+    <Content Include="Resources\Snacks\דגדג.jpg" />
+    <Content Include="Resources\Snacks\דוריטוס.jpg" />
     <Content Include="Resources\Snacks\צ%27יפס.jpg" />
     <Content Include="Resources\Snacks\תן צאפ.jpg" />
   </ItemGroup>

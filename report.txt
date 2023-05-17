@@ -1,3 +1,5 @@
 2023-05-17
-02:38 - 
-Sprite was selling, price: 6$
+15:53 - chips was selling, price: 11$
+15:54 - coffee was selling, price: 10$
+15:54 - apple juice was selling, price: 7$
+15:54 - Coca Cola was selling, price: 7$

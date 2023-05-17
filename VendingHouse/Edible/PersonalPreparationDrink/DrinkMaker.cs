@@ -11,21 +11,7 @@ namespace VendingHouse
 {
     internal abstract class DrinkMaker : IDrinkMaker
     {
-        static string imgPath;
-        public static Image Image { get; set; }
-
-       public DrinkMaker(string path)
-        {
-            imgPath = path;
-            if (Path.IsPathRooted(path) && Directory.Exists(Path.GetPathRoot(path)))
-            {
-               Image = Image.FromFile(path);
-            }
-            ////else....
-            Image = Image.FromFile(path);
-
-        }
-
+        
         public string Reset()
         {
 

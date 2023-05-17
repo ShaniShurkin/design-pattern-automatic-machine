@@ -2,8 +2,7 @@
 {
     internal class CoffeeMaker : DrinkMaker
     {
-        static string imgPath = "..//..//Resources//HotDrink//coffee.jpg";
-        public CoffeeMaker() : base(imgPath)
+        public CoffeeMaker() : base()
         {
             
         }
@@ -26,7 +25,6 @@
         [Optional]
         public string AddWhippedCream()
         {
-
 
             return "Adding whipped cream...";
         }

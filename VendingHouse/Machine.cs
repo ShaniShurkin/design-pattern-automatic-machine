@@ -6,12 +6,13 @@ namespace VendingHouse
 {
     internal class Machine
     {
-
         public Dictionary<string, List<Product>> Products { get; private set; }
         public Dictionary<string, HotDrink> HotDrinks { get; private set; }
         public Dictionary<string, ColdDrink> ColdDrinks { get; private set; }
         public Dictionary<string, Ingredient> Ingredients { get; private set; }
+
         static Machine myMachine;
+
         static object locker = new object();
         public static Machine MyMachine
         {
@@ -82,29 +83,17 @@ namespace VendingHouse
 
         }
 
-        /// <summary>
-        /// Removes the product from the list
-        /// and checks if the product's amount came to the min amount 
-        /// </summary>
-        /// <param name="ingredient"></param>
-        /// <returns>
-        /// True - If the product's amount equals to the min amount 
-        /// </returns>
         public bool RemoveIngredient(string ingredient)
         {
-            Ingredient selectedIngredient = Ingredients[ingredient.ToLower()];
-            selectedIngredient.Amount -= selectedIngredient.UnitQuantity;
-            return selectedIngredient.Amount < selectedIngredient.MinAmount ? true : false;
+            if(ingredient != "")
+            {
+                Ingredient selectedIngredient = Ingredients[ingredient.ToLower()];
+                selectedIngredient.Amount -= selectedIngredient.UnitQuantity;
+                return selectedIngredient.Amount < selectedIngredient.MinAmount ? true : false;
+            }
+            return false;
         }
 
-        /// <summary>
-        /// Removes the product from the list
-        /// and checks if the product's amount came to the min amount 
-        /// </summary>
-        /// <param name="product"></param>
-        /// <returns>
-        /// True - If the product's amount equals to the min amount 
-        /// </returns>
         public bool RemoveProduct(string product,string type)
         {
             Product selectedProduct = Products[type].Find((p) => p.Name == product);

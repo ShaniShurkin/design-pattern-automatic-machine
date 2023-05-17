@@ -90,6 +90,10 @@ namespace VendingHouse
                 list.Add("AddCoffee");
             else if (drinkMaker == "TeaMaker")
                 list.Add("AddTea");
+            else
+            {
+                list.Add("AddCocoa");
+            }
             list.AddRange(actions);
             return list;
 

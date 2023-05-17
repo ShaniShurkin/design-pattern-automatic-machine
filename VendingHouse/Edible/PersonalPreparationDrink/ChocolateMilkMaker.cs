@@ -2,12 +2,6 @@
 {
     internal class ChocolateMilkMaker : DrinkMaker
     {
-        static string imgPath = "..//..//Resources//HotDrink//shoko.jpeg";
-        public ChocolateMilkMaker() : base(imgPath)
-        {
-        }
-
-
         [Optional]
         public string AddChocolate()
         {
@@ -15,7 +9,6 @@
             return "Melting chocolate... \n Adding chocolate...";
         }
 
-        [Optional]
         public string AddCocoa()
         {
 

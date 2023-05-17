@@ -36,7 +36,6 @@ namespace VendingHouse.Report
                 
             }
         }
-
         public abstract void Print();
     }
 }
