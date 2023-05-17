@@ -22,7 +22,7 @@ namespace VendingHouse
 
         public override string GetProduct()
         {
-            return $"I'm a {Name} can ";
+            return $"{Name} can ";
         }
     }
 }

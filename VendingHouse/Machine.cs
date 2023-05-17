@@ -10,8 +10,6 @@ namespace VendingHouse
         public Dictionary<string, List<Product>> Products { get; private set; }
         public Dictionary<string, HotDrink> HotDrinks { get; private set; }
         public Dictionary<string, ColdDrink> ColdDrinks { get; private set; }
-
-
         public Dictionary<string, Ingredient> Ingredients { get; private set; }
         static Machine myMachine;
         static object locker = new object();
@@ -50,22 +48,17 @@ namespace VendingHouse
             ColdDrinks.Add("water", new ColdDrink("water", 4));
 
             Ingredients = new Dictionary<string, Ingredient>();
-            Ingredients.Add("cups", new Ingredient("cups", 300, 50,1,"Cup"));
-            Ingredients.Add("hot water", new Ingredient("hot water", 4000, 500,50,"ML"));
-            Ingredients.Add("sugar", new Ingredient("sugar", 170, 30,5,"g"));
-            Ingredients.Add("milk", new Ingredient("milk", 3000, 500,50,"ML"));
-            Ingredients.Add("coffee", new Ingredient("coffee", 1000, 50,3,"g"));
-            Ingredients.Add("chocolate", new Ingredient("chocolate", 300, 20,6,"g"));
-            Ingredients.Add("tea", new Ingredient("tea", 300, 20,5,"g"));
-            Ingredients.Add("cocoa", new Ingredient("cocoa", 300, 20,3,"g"));
-            Ingredients.Add("whipped cream", new Ingredient("whipped cream", 200, 20,5,"g"));
-            Ingredients.Add("tea leaves", new Ingredient("tea leaves", 200, 20,5,"g"));
+            Ingredients.Add("cups", new Ingredient("cups", 300, 50, 1, "Cup"));
+            Ingredients.Add("hot water", new Ingredient("hot water", 4000, 500, 50, "ML"));
+            Ingredients.Add("sugar", new Ingredient("sugar", 170, 30, 5, "g"));
+            Ingredients.Add("milk", new Ingredient("milk", 3000, 500, 50, "ML"));
+            Ingredients.Add("coffee", new Ingredient("coffee", 1000, 50, 3, "g"));
+            Ingredients.Add("chocolate", new Ingredient("chocolate", 300, 20, 6, "g"));
+            Ingredients.Add("tea", new Ingredient("tea", 300, 20, 5, "g"));
+            Ingredients.Add("cocoa", new Ingredient("cocoa", 300, 20, 3, "g"));
+            Ingredients.Add("whipped cream", new Ingredient("whipped cream", 200, 20, 5, "g"));
+            Ingredients.Add("tea leaves", new Ingredient("tea leaves", 200, 20, 5, "g"));
         }
-
-        /// <summary>
-        /// Adds new product 
-        /// </summary>
-        /// <param name="product"></param>
         public void Add(Iedible product)
         {
             Type type = product.GetType().BaseType;
@@ -99,7 +92,6 @@ namespace VendingHouse
         /// </returns>
         public bool RemoveIngredient(string ingredient)
         {
-            
             Ingredient selectedIngredient = Ingredients[ingredient.ToLower()];
             selectedIngredient.Amount -= selectedIngredient.UnitQuantity;
             return selectedIngredient.Amount < selectedIngredient.MinAmount ? true : false;
@@ -113,12 +105,11 @@ namespace VendingHouse
         /// <returns>
         /// True - If the product's amount equals to the min amount 
         /// </returns>
-        public bool RemoveProduct(string product)
+        public bool RemoveProduct(string product,string type)
         {
-
-                Product selectedProduct = Products[product.GetType().ToString().ToLower() + "s"].Find((p) => p.Name == product);
-                selectedProduct.Amount--;
-                return selectedProduct.Amount < Product.MinAmount ? true : false;
+            Product selectedProduct = Products[type].Find((p) => p.Name == product);
+            selectedProduct.Amount--;
+            return selectedProduct.Amount < Product.MinAmount ? true : false;
         }
 
 

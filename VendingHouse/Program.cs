@@ -17,7 +17,7 @@ namespace VendingHouse
         static void Main()
         {
             Machine machine = Machine.MyMachine;
-            machine.Products["cans"].Add(new Can("Coca Cola", 30, 6, "..//..//Resources//Cans//קולה.png" ));
+            machine.Products["cans"].Add(new Can("Coca Cola", 5, 6, "..//..//Resources//Cans//קולה.png" ));
             machine.Products["cans"].Add(new Can("Sprite", 30,  6, "..//..//Resources//Cans//ספרייט2.png"));
             machine.Products["cans"].Add(new Can("XL", 30,  6, "..//..//Resources//Cans//XL.jpeg"));
             machine.Products["cans"].Add(new Can("Fanta", 30, 6, "..//..//Resources//Cans//פנטה.jpg"));
@@ -29,9 +29,6 @@ namespace VendingHouse
             machine.Products["snacks"].Add(new Snack("Bisli", 30, 4.5, "..//..//Resources//Snacks//ביסלי.jpg"));
             machine.Products["snacks"].Add(new Snack("Ten Chap", 30, 4.5, "..//..//Resources//Snacks//תן צאפ.jpg"));
             machine.Products["snacks"].Add(new Snack("chips", 30,  8, "..//..//Resources//Snacks//צ'יפס.jpg"));
-            //machine.Products["snacks"].Add(new Snack("onion chips", 30, 8, "..//..//Resources//Snacks//ציפס טבעי (1).webp"));
-
-            //DependencyManager.RegisterDependencies();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1(new PurchaseMediator()));  

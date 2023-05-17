@@ -11,14 +11,13 @@ namespace VendingHouse
             this.Supplier = new Supplier("Dan", "0519993231");
             MinAmount = 15;
         }
-        //not sure yet.......
         public Snack(Product product):base(product)
         {
         }
 
         public override string GetProduct()
         {
-            return $"I'm a {Name} snack ";
+            return $"{Name} snack ";
         }
     }
 }

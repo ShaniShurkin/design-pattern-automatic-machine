@@ -21,7 +21,7 @@ namespace VendingHouse
         }
         public override string GetProduct()
         {
-            return $"I'm a {Name} bottle ";
+            return $"{Name} bottle";
         }
     }
 }

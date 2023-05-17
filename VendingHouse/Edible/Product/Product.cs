@@ -31,6 +31,7 @@ namespace VendingHouse
             }
             ////else....
             this.Image = Image.FromFile(path);
+            this.Supplier = this.Supplier == null? new Supplier("product supplier", "0504153321"):this.Supplier;    
         }
 
         public Product(Product product):this(product.Name, product.Amount, product.Price, product.ImagePath)
